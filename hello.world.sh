@@ -31,7 +31,7 @@
 
 #echo "All varibale passed to: $@" # All parameters will be displayed here
 #echo "All varibale passed to: $*"
-echo "Script name: $0"
+echo "Script name: $0" # it display file name
 echo "$PWD"
 echo "PID of script: $$"
 echo "current location: $HOME"
