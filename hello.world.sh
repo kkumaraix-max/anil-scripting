@@ -36,4 +36,5 @@ echo "$PWD"
 echo "PID of script: $$"
 echo "current location: $HOME"
 echo "User name: $USER"
+sleep 20 &
 echo "PID of last command: $!"
