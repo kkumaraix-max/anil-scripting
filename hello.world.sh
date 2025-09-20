@@ -35,5 +35,5 @@ echo "Script name: $0"
 echo "$PWD"
 echo "PID of script: $$"
 echo "current location: $HOME"
-echo "User name: $USER
+echo "User name: $USER"
 echo "PID of last command: $!"
