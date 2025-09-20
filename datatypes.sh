@@ -9,4 +9,4 @@
 
 CITIS=("HYD" "BLR" "PUNE")
 #echo "all citis: ${CITIS[@]}"
-echo "First citi: ${CITIS[1]}"
+echo "Second citi: ${CITIS[1]}"
