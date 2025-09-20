@@ -8,4 +8,5 @@
 #echo "SUMM is: ${SUM}"
 
 CITIS=("HYD" "BLR" "PUNE")
-echo "all citis: ${CITIS[@]}"
+#echo "all citis: ${CITIS[@]}"
+echo "First citi: ${CITIS[1]}"
