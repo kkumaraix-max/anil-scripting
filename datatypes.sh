@@ -1,0 +1,6 @@
+#!/bin/bash
+
+NUMBER1=100
+NUMBER2-300
+
+echo "($NUMBER1+$NUMBER2)
