@@ -29,7 +29,7 @@
 
 #echo "Course name is: $COURSE"
 
-#echo "All varibale passed to: $@"
+#echo "All varibale passed to: $@" # All parameters will be displayed here
 #echo "All varibale passed to: $*"
 echo "Script name: $0"
 echo "$PWD"
