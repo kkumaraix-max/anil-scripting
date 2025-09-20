@@ -1,6 +1,5 @@
 #!/bin/bash
 #First Note#
 echo "Hello world"
-edho "I'm Anil & upskilling to DevSecOps with AWS"
-echo "Kindly support me"
+echo "I am Anil and upskilling to DevSecOps with AWS"
 echo "Thank you"
