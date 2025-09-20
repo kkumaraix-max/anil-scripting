@@ -24,4 +24,5 @@ echo "$CITI3 Is Maharastra capital"
 
 echo "Please enter your password"
 read -s PASSWORD 
-echo "password entered is : $*"
+echo "password entered is : $*" #password will be hidden
+echo "password entered is : $PASSWORD"
