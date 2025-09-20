@@ -29,4 +29,5 @@
 
 #echo "Course name is: $COURSE"
 
-echo "All varibale passed to: $@"
+#echo "All varibale passed to: $@"
+echo "All varibale passed to: $*"
