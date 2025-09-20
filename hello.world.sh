@@ -21,3 +21,7 @@ CITI3=$3
 echo "$CITI1 Is Telangana capital"
 echo "$CITI2 Is Karnataka capital"
 echo "$CITI3 Is Maharastra capital"
+
+echo "Please enter your password"
+read -s PASSWORD 
+echo "password entered is : $PASSWORD"
