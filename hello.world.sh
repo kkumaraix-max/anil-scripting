@@ -32,3 +32,4 @@
 #echo "All varibale passed to: $@"
 #echo "All varibale passed to: $*"
 echo "Script name: $0"
+echo "$PWD"
