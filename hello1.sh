@@ -27,8 +27,8 @@
 #sleep 20 &
 #echo "PID last executed:$!"
 
-Start_time=$(date %+s)
-End_time=$(date %+s)
+Start_time=$(date +%s)
+End_time=$(date +%s)
 
 Sum=${($Start_time-$End_time)}
 sleep 10 &
