@@ -28,10 +28,12 @@
 #echo "PID last executed:$!"
 
 Start_time=$(date +%s)
-sleep 10 &
+sleep 10
 End_time=$(date +%s)
 
 Sum=$(($Start_time-$End_time))
 
 echo "Script execute: $Sum"
+
+
 
