@@ -13,9 +13,17 @@
 #echo "$Server4 is Solaris1"
 
 
-A=100
-B=200
+#A=100
+#B=200
 
-SUM=$(($A+$B))
+#SUM=$(($A+$B))
 
-echo "Summ is $SUM"
+#echo "Summ is $SUM"
+
+echo "Script name is:$0"
+echo "Present working directory:$PWD"
+echo "user who execueted is :$USER"
+echo "Process of of script :$PID"
+echo "$PID last executed:$1"
+
+
