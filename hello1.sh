@@ -16,6 +16,6 @@
 A=100
 B=200
 
-SUM=(($A+$B))
+SUM=${[$A+$B]}
 
 echo "Summ is $SUM"
