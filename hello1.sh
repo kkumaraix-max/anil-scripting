@@ -38,7 +38,7 @@
 Leaders=("Modi" "Anil" "Avyaan" "Kavya")
 echo "Fisrt leader: ${Leaders[0]}"
 echo "Second lear: ${Leaders[1]}"
-
+echo "fourth leader: ${Leaders[3]}"
 
 
 
