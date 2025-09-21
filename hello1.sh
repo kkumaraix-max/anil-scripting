@@ -23,7 +23,7 @@
 echo "Script name is:$0"
 echo "Present working directory:$PWD"
 echo "user who execueted is :$USER"
-echo "Process of of script :$PID"
+echo "Process of of script :$$"
 sleep 20 &
 echo "PID last executed:$!"
 
