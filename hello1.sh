@@ -30,7 +30,7 @@
 Start_time=$(date +%s)
 End_time=$(date +%s)
 
-Sum=${($Start_time-$End_time)}
+Sum=$(($Start_time-$End_time))
 sleep 10 &
 echo "Script execute: $Sum"
 
