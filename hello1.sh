@@ -20,11 +20,17 @@
 
 #echo "Summ is $SUM"
 
-echo "Script name is:$0"
-echo "Present working directory:$PWD"
-echo "user who execueted is :$USER"
-echo "Process of of script :$$"
-sleep 20 &
-echo "PID last executed:$!"
+#echo "Script name is:$0"
+#echo "Present working directory:$PWD"
+#echo "user who execueted is :$USER"
+#echo "Process of of script :$$"
+#sleep 20 &
+#echo "PID last executed:$!"
 
+Start_time=$(date %s)
+End_time=$(date %s)
+
+Sum=${($Start_time-$End_time)}
+sleep 10 &
+echo "Script execute: $Sum"
 
