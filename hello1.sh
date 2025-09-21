@@ -27,13 +27,17 @@
 #sleep 20 &
 #echo "PID last executed:$!"
 
-Start_time=$(date +%s)
-sleep 10
-End_time=$(date +%s)
+#Start_time=$(date +%s)
+#sleep 10
+#End_time=$(date +%s)
 
-Sum=$(($End_time-$Start_time))
+#Sum=$(($End_time-$Start_time))
 
-echo "Script execute: $Sum"
+#echo "Script execute: $Sum"
+
+Leaders=("Modi" "Anil" "Avyaan" "Kavya")
+echo "Fisrt leader: ${Leaders[0]}"
+echo "Second lear: ${Leaders[1]}"
 
 
 
