@@ -12,11 +12,11 @@ if [ $USERID -ne 0 ]; then
 fi    
 
 VALIDATE(){
-    if [ $1 -ne 0 ];
-        echo "can not install $2"
-    exit 1
+    if [ $1 -ne 0 ]; then
+        echo "can not install $2 is failure"
+        exit 1
     else
-        echo "instyalling $2 is success"
+        echo "installing $2 is success"
     fi
 }
 
