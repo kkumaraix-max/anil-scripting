@@ -34,4 +34,4 @@ VALIDATE(){
     fi
 }
     dnf install nodejs -y
-    VALIDATE $1 "NodeJS"
+    VALIDATE $1 "nodejs"
