@@ -27,12 +27,11 @@ if [ $? -ne 0 ]; then
 
 VALIDATE(){
     if [ $1 -ne 0 ]; then
-    echo "installation of $2 failed"
-    exit 1
+        echo "installation of $2 failed"
+        exit 1
     else 
-    echo "installation of $2 completed"
+        echo "installation of $2 completed"
+    fi
 }
-
-
     dnf install nodejs -y
     VALIDATE $1 "NodeJS"
