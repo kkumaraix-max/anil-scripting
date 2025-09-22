@@ -21,5 +21,5 @@ if [ $? -ne 0 ]; then
    echo "error nginx install failed"
    exit 1
    else
-    echo "install nginx
+    echo "install nginx"
  fi   
