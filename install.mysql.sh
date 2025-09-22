@@ -23,3 +23,14 @@ if [ $? -ne 0 ]; then
    else
     echo "install nginx"
  fi   
+
+
+VALIDATE(){
+    if [ $1 -eq 0 ]; then
+    echo "installation of $2 completed"
+    exit 0
+
+    dnf install nodejs -y
+    VALIDATE $1 "NodeJS"
+
+}
