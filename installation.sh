@@ -13,10 +13,11 @@ fi
 
 VALIDATE(){
     if [ $1 -ne 0 ];
-    echo "can not install $2"
+        echo "can not install $2"
     exit 1
-    else 
-    echo "instyalling $2 is success"
+    else
+        echo "instyalling $2 is success"
+    fi
 }
 
 dnf install mysql -y
