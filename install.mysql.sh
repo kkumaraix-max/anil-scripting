@@ -14,3 +14,12 @@ if [ $? -ne 0 ]; then
    exit 1
     echo "install mysql"   
 fi
+
+dnf install nginx -y
+
+if [ $? -ne 0 ]; then
+   echo "error nginx install failed"
+   exit 1
+   else
+    echo "install nginx
+ fi   
