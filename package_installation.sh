@@ -3,7 +3,7 @@
 ID=$(id -u)
 
 if [ $ID -ne 0 ]; then
-   echo "ERROR: you need root access"
+   echo "ERROR: Root privileges are required to execute this script"
    exit 1
 fi
 VALIDATE(){
