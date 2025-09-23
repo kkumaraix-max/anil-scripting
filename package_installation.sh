@@ -3,7 +3,7 @@
 ID=$(id -u)
 
 LOGS_FOLDER="/var/log/shell-script"
-SCRIPTNAME=$(echo $0 | cut -d "." f1)
+SCRIPTNAME=$( echo $0 | cut -d "_" f1 )
 LOGFILE="$LOGS_FOLDER/$SCRIPTNAME.log"
 
 if [ $ID -ne 0 ]; then
