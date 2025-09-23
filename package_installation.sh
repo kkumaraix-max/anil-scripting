@@ -2,6 +2,10 @@
 
 ID=$(id -u)
 
+LOGS_FOLDER="/var/log/shell-script"
+SCRIPTNAME=$(echo $0 | cut -d "." f1)
+LOGFILE="$LOGS_FOLDER/$SCRIPTNAME.log"
+
 if [ $ID -ne 0 ]; then
    echo "ERROR: Root privileges are required to execute this script ..."
    exit 1
@@ -18,9 +22,9 @@ VALIDATE(){
 }
   for package in "$@"
   do
-        dnf list installed | grep $package &>>/var/log/package.log
+        dnf list installed | grep $package &>>$LOGFILE
     if [ $? -ne 0 ]; then
-        dnf install $package -y &>>/var/log/package.log
+        dnf install $package -y &>>$LOGFILE
         VALIDATE $? "$package"
     else
         echo "$package already installed in the server"
