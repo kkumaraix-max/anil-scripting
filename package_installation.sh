@@ -1,10 +1,10 @@
 #!/bin/bash
 
 ID=$(id -u)
-DATE=$
+DATE=$(date.+%d.%m.%y.%H.%M.%s)
 LOGS_FOLDER="/var/log/shell-script"
 SCRIPT_NAME=$( echo $0 | cut -d "_" -f1 )
-LOGFILE="$LOGS_FOLDER/$SCRIPT_NAME.log.+%d.%m.%y.%H.%M.%s"
+LOGFILE="$LOGS_FOLDER/$SCRIPT_NAME.log.$DATE"
 
 mkdir -p $LOGS_FOLDER
 
