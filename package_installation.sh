@@ -4,7 +4,7 @@ ID=$(id -u)
 DATE=$(date.+%d.%m.%y.%H.%M.%s)
 LOGS_FOLDER="/var/log/shell-script"
 SCRIPT_NAME=$( echo $0 | cut -d "_" -f1 )
-LOGFILE="$LOGS_FOLDER/$SCRIPT_NAME.log.$DATE"
+LOGFILE="$LOGS_FOLDER/${SCRIPT_NAME}.$DATE.log"
 
 mkdir -p $LOGS_FOLDER
 
