@@ -14,7 +14,7 @@ VALIDATE(){
       exit 1 
     else 
     echo "install nginx"
-   }
+}
  fi  
 
 
