@@ -1,9 +1,10 @@
 #!/bin/bash
+R="\e[31m"
 
 ID=$(id -u)
 
 if [ $ID -ne 0 ]; then
-   echo "ERROR: Root privileges are required to execute this script"
+   echo "ERROR: Root privileges are required to execute this script ... $R"
    exit 1
 fi
 VALIDATE(){
