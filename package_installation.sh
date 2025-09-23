@@ -18,7 +18,7 @@ VALIDATE(){
   do
         dnf list installed | grep $package
     if [ $? -ne 0 ]; then
-        dnf install $package -y
+        dnf install $package -y &>>/var/log/package.log
         VALIDATE $? "$package"
     else
         echo "$package has been already installed"
