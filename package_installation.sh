@@ -8,10 +8,10 @@ if [ $ID -ne 0 ]; then
 fi
 VALIDATE(){
     if [ $? -ne 0 ]; then
-      echo "Error: $2 already installed"
+      echo "Error: $package already installed"
       exit 1 
     else 
-    echo "$2 installation completed"
+    echo "$package installation completed"
     fi
 }
   for package in $@
