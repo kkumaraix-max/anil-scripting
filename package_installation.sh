@@ -1,12 +1,12 @@
 #!/bin/bash
 
 ID=$(id -u)
-DATE=$(date +%d.%m.%y.%H.%M.%s)
-LOGS_FOLDER="/var/log/shell-script"
+DATE=$(date)
+LOGS_DIR="/var/log/ani-script"
 SCRIPT_NAME=$( echo $0 | cut -d "_" -f1 )
-LOGFILE="$LOGS_FOLDER/${SCRIPT_NAME}.$DATE.log"
+LOGFILE="$LOGS_DIR/${SCRIPT_NAME}.$DATE.log"
 
-mkdir -p $LOGS_FOLDER
+mkdir -p $LOGS_DIR
 
 if [ $ID -ne 0 ]; then
    echo "ERROR: Root privileges are required to execute this script ..."
