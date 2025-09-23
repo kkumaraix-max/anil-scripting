@@ -17,7 +17,7 @@ VALIDATE(){
   for package in $@
   do
         dnf list installed | grep $package
-    if [ $1 -ne 0 ]; then
+    if [ $? -ne 0 ]; then
         dnf install $package -y
         VALIDATE $? "$package"
     else
@@ -25,8 +25,3 @@ VALIDATE(){
 
     fi
  done
-        
-
-
-
-
