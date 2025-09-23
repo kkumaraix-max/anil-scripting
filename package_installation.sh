@@ -11,7 +11,7 @@ VALIDATE(){
       echo "Error: $2 already installed"
       exit 1 
     else 
-    echo "installation completed $2"
+    echo "$2 installation completed"
     fi
 }
   for package in $@
