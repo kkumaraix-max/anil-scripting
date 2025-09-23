@@ -16,7 +16,7 @@ VALIDATE(){
 }
   for package in $@
   do
-        dnf list installed | grep $package
+        dnf list installed | grep $package &>>/var/log/package.log
     if [ $? -ne 0 ]; then
         dnf install $package -y &>>/var/log/package.log
         VALIDATE $? "$package"
