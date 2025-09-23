@@ -7,14 +7,16 @@ if [ $ID -ne 0 ]; then
    exit 1
 fi
 VALIDATE(){
-    if [ $? -ne 0 ]; then
-      echo "Error: $package already installed"
+    exit_status=$1
+    package=$2
+    if [ $1 -ne 0 ]; then
+      echo "Error: $2 already installed"
       exit 1 
     else 
-    echo "$package installation completed"
+    echo "$2 installation completed"
     fi
 }
-  for package in $@
+  for package in "$@"
   do
         dnf list installed | grep $package &>>/var/log/package.log
     if [ $? -ne 0 ]; then
