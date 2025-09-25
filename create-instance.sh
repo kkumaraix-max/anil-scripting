@@ -23,5 +23,6 @@ do
         RECORD_NAME="$DOMAIN_NAME" # anilkathoju.space
     fi
 
- echo "$i: $IP"
+ echo "$i: $IP Instance creation success"
+ 
  done
