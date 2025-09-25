@@ -24,3 +24,4 @@ do
     fi
 
  echo "$i: $IP"
+ done
