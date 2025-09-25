@@ -26,3 +26,20 @@ do
  echo "$i: $IP Instance created"
  
  done
+
+ aws route53 change-resource-record-sets \
+  --hosted-zone-id Z096778411CYC46C0VA5Q \
+  --change-batch "{
+    \"Comment\": \"Updating record set\",
+    \"Changes\": [{
+      \"Action\": \"UPSERT\",
+      \"ResourceRecordSet\": {
+        \"Name\": \"${RECORD_NAME}\",
+        \"Type\": \"A\",
+        \"TTL\": 60,
+        \"ResourceRecords\": [{
+          \"Value\": \"${IP}\"
+        }]
+      }
+    }]
+  }"
