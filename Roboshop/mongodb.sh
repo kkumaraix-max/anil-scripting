@@ -32,7 +32,7 @@ VALIDATE(){
 
     fi
 
-    cp mongo.rep /etc/yum.repos.d/mongo.repo
+    cp mongo.repo /etc/yum.repos.d/mongo.repo
     VALIDATE $? "Adding repo"
     
     dnf install $package -y &>>$LOGFILE
