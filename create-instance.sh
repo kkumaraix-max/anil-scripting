@@ -25,21 +25,4 @@ do
 
  echo "$i: $IP" 
 
-    aws route53 change-resource-record-sets \
-  --hosted-zone-id Z096778411CYC46C0VA5Q \
-  --change-batch '
-  {
-    "Comment": "Updating record set"
-    ,"Changes": [{
-      "Action"              : "UPSERT"
-      ,"ResourceRecordSet"  : {
-        "Name"              : "'$RECORD_NAME'"
-        ,"Type"             : "A"
-        ,"TTL"              : 1
-        ,"ResourceRecords"  : [{
-            "Value"         : "'$IP'"
-        }]
-      }
-    }]
-  }
-  '
+  
