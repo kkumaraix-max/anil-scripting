@@ -21,21 +21,10 @@ VALIDATE(){
     echo "$2 installation completed"
     fi
 }
-  for package in "$@"
-  do
-        dnf list installed | grep $package &>>$LOGFILE
-    if [ $? -ne 0 ]; then
-        dnf install $package -y &>>$LOGFILE
-        VALIDATE $? "$package"
-    else
-        echo "$package already installed in the server"
-
-    fi
-
     cp mongo.repo /etc/yum.repos.d/mongo.repo
     VALIDATE $? "Adding repo"
     
-    dnf install $package -y &>>$LOGFILE
+    dnf install mongodb-org -y &>>$LOGFILE
     VALIDATE $? "installing Mongodb"
 
     systemctl enable mongod 
@@ -44,5 +33,3 @@ VALIDATE(){
     systemctl start mongod 
     VALIDATE $? "start mongodb"
 
-
- done
