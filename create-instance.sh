@@ -14,7 +14,7 @@ do
      INSTANCE_ID=$(aws ec2 run-instances --image-id $AMI_ID --instance-type t3.micro --security-group-ids $SG_ID --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$i}]" --query 'Instances[0].InstanceId' --output text)
 
  #GET INSTACE PRIVATE IP 
-    if [ $i -ne "frontend" ]; then
+    if [ $i != "frontend" ]; then
 
         IP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Reservations[0].Instances[0].PrivateIpAddress' --output text)
         RECORD_NAME="$i.$DOMAIN_NAME" # mongodb.anilkathoju.space
