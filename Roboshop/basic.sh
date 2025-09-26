@@ -20,7 +20,11 @@ VALIDATE() {
      echo "SUCCESS: $2"
   fi
 }
+for i in "$@"
+do
 
 # Install nginx
-dnf install nginx -y &>>$LOG_FILE
-VALIDATE $? "Nginx installation completed"
+dnf install $2 -y &>>$LOG_FILE
+VALIDATE $? "$2 completed"
+
+done
