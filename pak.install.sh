@@ -27,9 +27,9 @@ fi
 for package in  "$@"
 do
     dnf list installed | grep $package
-    if [ $? -ne 0 ]; then
+    if [ $1 -ne 0 ]; then
       dnf install $package -y
-        VALIDATE $? "$2"
+        VALIDATE $1 "$2"
     else
         echo "$package already installed in the server"
 fi
