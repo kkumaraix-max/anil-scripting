@@ -12,9 +12,6 @@ if [ $ID -ne 0 ]; then
 else 
     
     dnf install nginx -y &>>$LOG_FILE
-    echo " NGINX installation completed"
+    echo "NGINX installation completed"
 
- fi   
-
-
-
+ fi
