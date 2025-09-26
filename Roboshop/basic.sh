@@ -20,11 +20,11 @@ VALIDATE() {
      echo "SUCCESS: $2"
   fi
 }
+
+# Install all packages passed as arguments
 for i in "$@"
 do
-
-# Install nginx
-dnf install $2 -y &>>$LOG_FILE
-VALIDATE "$?" "$i completed"
-
+   echo "INFO: Installing $i ..."
+   dnf install -y $i &>>$LOG_FILE
+   VALIDATE $? "$i installation"
 done
