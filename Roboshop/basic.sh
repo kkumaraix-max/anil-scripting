@@ -1,31 +1,26 @@
-#!bin/bash
+#!/bin/bash
 
 ID=$(id -u)
 UNAME=$(hostname | cut -d '.' -f1)
-DATE=$(date +%D/%T)
-LOG_FILE="/var/log/${UNAME}.${DATE}.log"
+DATE=$(date +%d-%m-%Y-%H-%M-%S)
+LOG_FILE="/var/log/${UNAME}_${DATE}.log"
 
-touch /var/log/${UNAME}.${DATE}.log
-
+# Check root privileges
 if [ $ID -ne 0 ]; then
-   echo "ERROR:you need root privilages to execute this command"
+   echo "ERROR: You need root privileges to execute this script"
    exit 1
-   else
-   echo "Nginx has been installed successfully"
 fi
 
-VALIDATE(){
-    exit_status=$1
-    package=$2
-    if [ $1 -ne 0 ]; then
-      echo "Error: $2 already installed"
-      exit 1 
-    else 
-    echo "$2 installation completed"
-    fi
+# Validation function
+VALIDATE() {
+  if [ $1 -ne 0 ]; then
+     echo "ERROR: $2 ... check logs at $LOG_FILE"
+     exit 1
+  else
+     echo "SUCCESS: $2"
+  fi
 }
 
+# Install nginx
 dnf install nginx -y &>>$LOG_FILE
-VALIDATE "$1" "$2 installed"
-
-
+VALIDATE $? "Nginx installation completed"
