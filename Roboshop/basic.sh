@@ -9,6 +9,6 @@ if [ $ID -ne 0 ]; then
    echo "ERROR:you need root privilages to execute this command"
    exit 1
    else
-   dnf install nginx -y &>>$DATE
+   dnf install nginx -y &>>$LOG_FILE
    echo "Nginx has been installed successfully"
 fi
