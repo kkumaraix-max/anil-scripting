@@ -25,6 +25,6 @@ do
 
 # Install nginx
 dnf install $2 -y &>>$LOG_FILE
-VALIDATE $? "$2 completed"
+VALIDATE "$?" "$i completed"
 
 done
