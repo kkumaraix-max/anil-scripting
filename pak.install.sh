@@ -4,10 +4,10 @@
 USERID=$(id -u)
 
 if [ $USERID -ne 0 ]; then 
-    echo "ERROR: You need root/sudo privilages to install this packages"
+    echo "ERROR: You need super user privilages to install this packages"
     exit 1
     else
-    echo "success" 
+    echo "you have necessary super user access" 
 fi
 
 #Check if packages already exist or not
@@ -18,7 +18,7 @@ package=$2
 if [ $1 -ne 0 ]; then
     echo "$2 already installed"
     else
-    echo "install $2"
+    echo "installing completed successfully $2"
 fi
 }
 
