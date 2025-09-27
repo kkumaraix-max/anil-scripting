@@ -16,29 +16,29 @@
 
 
 ## Below one is to reset passwd user which are passed as Arguments
-#PASSWORD=Anil@123
+PASSWORD=Anil@123
 
-#for USER in "$@"
-#do
-#if [ "$USER" = "root" ]; then
-#    echo "ERROR: you should not change root user passwd"
-#    else
-#    echo "$USER is Normal user you can chnage it"
-#    echo "$USER:$PASSWORD" | chpasswd
-#fi
-#done   
+for USER in "$@"
+do
+if [ "$USER" = "root" ]; then
+    echo "ERROR: you should not change root user passwd"
+    else
+    echo "$USER is Normal user you can chnage it"
+    echo "$USER:$PASSWORD" | chpasswd
+fi
+done   
 
 
 #Get to know user id
 
-USER=anilk
-PASSWORD=anil@123
+#USER=anilk
+#PASSWORD=anil@123
 
 #Need to check user id exist or not
 
-if [ $USER != anilk ]; then
-    echo "ERROR: $USER is not found"
-    else
-    echo "$USER is exist and resetting password"
-    echo "$USER:$PASSWORD" | chpasswd
-fi   
+#if [ $USER != anilk ]; then
+#    echo "ERROR: $USER is not found"
+#    else
+#    echo "$USER is exist and resetting password"
+#    echo "$USER:$PASSWORD" | chpasswd
+#fi   
