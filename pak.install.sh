@@ -22,7 +22,7 @@ if [ $1 -ne 0 ]; then
 fi
 }
 
-#install packages
+#Install packages
 
 for package in  "$@"
 do
