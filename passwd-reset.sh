@@ -15,13 +15,14 @@
 #fi    
 
 PASSWORD=Anil@123
+USER=$(id -u)
 
 for USER in "$@"
 do
-if [ $USER != 0 ]; then
-    echo "ERROR: $USER is not vaialable"
+if [ $USER = 0 ]; then
+    echo "ERROR: you should not change root user passwd"
     else
-    echo "$USER is exist and resetting password"
+    echo "$USER is Normal user you can chnage it"
     echo "$USER:$PASSWORD" | chpasswd
 fi
 done   
