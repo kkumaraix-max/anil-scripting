@@ -27,11 +27,12 @@ VALIDATE(){
     fi
 }
 
-
- dnf install mysql -y 
-
-
 #install 
+ dnf install mysql -y 
+ VALIDATE "$?" "mysql"
+
+
+
 
 
 
