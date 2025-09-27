@@ -5,13 +5,13 @@
 # Version : V1
 
 set -x
-echo " file system usage"
+=============echo " file system usage"================
 df -h
-echo " memory usage"
+================echo " memory usage"================
 free -m
-echo " cpu allocated"
+================echo " cpu allocated"================
 nproc
-echo " system usage with memory or cpu"
+================echo " system usage with memory or cpu"================
 top
 
 
