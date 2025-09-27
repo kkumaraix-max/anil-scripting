@@ -8,7 +8,7 @@
 USER_ID=$(id -u)
 
 if [ $USER_ID -ne 0 ]; then
-    echo "ERROR: You will be superuser privilages to install this package"
+    echo "ERROR: You will be need superuser privilages to install this package"
     else
     echo "Install the package"
 fi   
@@ -24,7 +24,7 @@ VALIDATE(){
     else
     dnf install mysql -y 
     echo "mysql has been installed" 
-
+    fi
 }
 
 
