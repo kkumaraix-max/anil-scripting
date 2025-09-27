@@ -31,17 +31,15 @@ VALIDATE(){
 }
 
 #install
-for package in "$@"
+for package in  "$@"
 do
-VALIDATE(){
-    if [ $1 -ne 0 ]; then
-  echo echo "$2 already isnatlled"
-  exit 1
-  else  
-  dnf install $package -y 
-  VALIDATE "$?" "$2"
-  fi
-}
+    dnf list installed | grep $package
+    if [ $? -ne 0 ]; then
+      dnf install $package -y &>>/var/log/$HOSTNAME.log
+        VALIDATE $? "$2"
+    else
+        echo "$package already installed in the server"
+fi
 done
 
 
