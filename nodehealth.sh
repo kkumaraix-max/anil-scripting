@@ -23,7 +23,7 @@
 
 
 REPORT="/tmp/healthcheck_$(date +%F_%H-%M-%S).log"
-EMAIL="admin@example.com"   # Change to your email
+EMAIL="anilkathoju@gmail.com"   # Change to your email
 
 
 set -e  # exit if any command fails
