@@ -6,6 +6,6 @@
 
 set -x #Every command will be printed before output
 
-df -h
-free -m
+df -h | awk " " {print $4}
+free -m | awk " " {print $2}
 nproc
