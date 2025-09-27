@@ -4,6 +4,8 @@
 # Date    : 27th Sep 2025
 # Version : V1
 
+set -x
+
 df -h
 free -m
 nproc
