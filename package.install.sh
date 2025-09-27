@@ -9,6 +9,7 @@ USER_ID=$(id -u)
 
 if [ $USER_ID -ne 0 ]; then
     echo "ERROR: You will be need superuser privilages to install this package"
+    exit 1
     else
     echo "Install the package"
 fi   
@@ -20,9 +21,10 @@ fi
 
 VALIDATE(){
     if [ $? -ne 0 ]; then
-    echo "package already isnatlled"
+    echo "installation of $2 failed"
+    exit 1
     else
-    echo "mysql has been installed" 
+    echo "package has been successfully installed" 
     fi
 }
 
@@ -41,3 +43,4 @@ VALIDATE(){
   fi
 }
 done
+
