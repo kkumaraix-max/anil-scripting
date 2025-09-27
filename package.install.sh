@@ -22,14 +22,21 @@ VALIDATE(){
     if [ $? -eq 0 ]; then
     echo "package already isnatlled"
     else
-   
     echo "mysql has been installed" 
     fi
 }
 
-#install 
- dnf install mysql -y 
- VALIDATE "$?" "mysql"
+#install
+for package in "$@"
+do
+VALIDATE(){
+    exit_status=$1
+    package=$2
+  if [ $1 -ne 0 ]; then   
+ dnf install $package -y 
+ VALIDATE "$?" "$package"
+fi
+}
 
 
 
