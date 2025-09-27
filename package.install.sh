@@ -33,15 +33,7 @@ VALIDATE(){
     exit_status=$1
     package=$2
   if [ $1 -ne 0 ]; then   
- dnf install $package -y 
- VALIDATE "$?" "$package"
-fi
+  dnf install $package -y 
+  VALIDATE "$?" "$2"
+  fi
 }
-
-
-
-
-
-
-
-
