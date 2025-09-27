@@ -39,3 +39,4 @@ VALIDATE(){
   VALIDATE "$?" "$2"
   fi
 }
+done
