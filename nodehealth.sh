@@ -53,6 +53,6 @@ uptime -p
 echo "===================================="
 echo "   Health Check Completed"
 echo "===================================="
-echo "this output will stored in /tmp/health*"
+echo "this output will be stored in the location $REPORT"
 } > "$REPORT"
 
