@@ -13,6 +13,8 @@ if [ $USER != anilk ]; then
     echo "$USER:$PASSWORD" | chpasswd
 fi    
 
+
+## Below one is to reset passwd user which are passed as Arguments
 #PASSWORD=Anil@123
 
 #for USER in "$@"
