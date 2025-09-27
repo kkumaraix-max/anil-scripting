@@ -56,3 +56,7 @@ echo "===================================="
 echo "this output will be stored in the location $REPORT"
 } > "$REPORT"
 
+# Send the report via email
+mail -s "Node Health Check Report - $(hostname)" "$EMAIL" < "$REPORT"
+
+
