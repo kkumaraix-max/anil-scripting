@@ -18,7 +18,7 @@ PASSWORD=Anil@123
 
 for USER in "$@"
 do
-if [ "$USER" = "root"]; then
+if [ "$USER" = "root" ]; then
     echo "ERROR: you should not change root user passwd"
     else
     echo "$USER is Normal user you can chnage it"
