@@ -70,5 +70,5 @@ uptime -p
 echo "===================================="
 echo "   Health Check Completed"
 echo "===================================="
-} } > "$REPORT"
+} > "$REPORT"
 
