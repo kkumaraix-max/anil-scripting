@@ -20,7 +20,9 @@ fi
 #$? = 1 to 127 failure
 
 VALIDATE(){
-    if [ $? -ne 0 ]; then
+    exit_status=$1
+    package=$2
+    if [ $1 -ne 0 ]; then
     echo "installation of $2 failed"
     exit 1
     else
@@ -32,10 +34,8 @@ VALIDATE(){
 for package in "$@"
 do
 VALIDATE(){
-    exit_status=$1
-    package=$2
-  if [ $1 -ne 0 ]; then
-  echo echo "package already isnatlled"
+    if [ $1 -ne 0 ]; then
+  echo echo "$2 already isnatlled"
   exit 1
   else  
   dnf install $package -y 
@@ -43,4 +43,5 @@ VALIDATE(){
   fi
 }
 done
+
 
