@@ -4,7 +4,7 @@
 #Date : 27th Sep 2025
 #Version : V1
 
-set -x #Every command will be printed before output
+#set -x #Every command will be printed before output
 
 echo "===== Disk Usage ====="
 df -h | awk -F " " '{print $4F,$5F}'  #it will print available space & used %# 
