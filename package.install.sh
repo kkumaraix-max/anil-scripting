@@ -32,7 +32,9 @@ do
 VALIDATE(){
     exit_status=$1
     package=$2
-  if [ $1 -ne 0 ]; then   
+  if [ $1 -eq 0 ]; then
+  echo echo "package already isnatlled"
+  else  
   dnf install $package -y 
   VALIDATE "$?" "$2"
   fi
