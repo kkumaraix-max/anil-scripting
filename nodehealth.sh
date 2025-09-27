@@ -21,9 +21,14 @@
 # Date    : 27th Sep 2025
 # Version : V1
 
+
+REPORT="/tmp/healthcheck_$(date +%F_%H-%M-%S).log"
+EMAIL="admin@example.com"   # Change to your email
+
+
 set -e  # exit if any command fails
 set -x  # debug mode (prints each command before execution)
-
+{
 echo "===================================="
 echo "   NODE HEALTH CHECK REPORT"
 echo "   Hostname: $(hostname)"
@@ -65,4 +70,5 @@ uptime -p
 echo "===================================="
 echo "   Health Check Completed"
 echo "===================================="
+} } > "$REPORT"
 
