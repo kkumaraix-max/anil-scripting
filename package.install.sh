@@ -19,7 +19,7 @@ fi
 #$? = 1 to 127 failure
 
 VALIDATE(){
-    if [ $? -eq 0 ]; then
+    if [ $? -ne 0 ]; then
     echo "package already isnatlled"
     else
     echo "mysql has been installed" 
@@ -32,8 +32,9 @@ do
 VALIDATE(){
     exit_status=$1
     package=$2
-  if [ $1 -eq 0 ]; then
+  if [ $1 -ne 0 ]; then
   echo echo "package already isnatlled"
+  exit 1
   else  
   dnf install $package -y 
   VALIDATE "$?" "$2"
