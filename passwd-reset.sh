@@ -14,6 +14,7 @@
     #echo "$USER:$PASSWORD" | chpasswd
 #fi    
 
+PASSWORD=Anil@123
 
 for USER in "$@"
 do
