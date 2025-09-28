@@ -29,12 +29,13 @@ fi
 
 for package in "$@"
 do 
-   if dnf list installed | grep $package
+   if dnf list installed "$package"
+    then
         echo "alreay $package installed"
-else   
-        echo "$2 installing"  
+    else   
+        echo "$package installing"  
         dnf install $package -y &>>$LOG_FILE
-        VALIDATE $1 "$package"
+        VALIDATE $? "$package"
    fi
 done
 
