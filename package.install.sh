@@ -1,45 +1,39 @@
 #!/bin/bash
-# Purpose of this script to install packages
+# Purpose : Install packages if not already installed
 # Author  : Anil Kumar Kathoju
 # Date    : 27th Sep 2025
-# Version : V1
+# Version : V2
 
-#user needs to have access to install packages
+# Check if user is root
 USER_ID=$(id -u)
-
-if [ $USER_ID -ne 0 ]; then
-    echo "ERROR: You will be need superuser privilages to install this package"
+LOG_FILE="/tmp/$HOSTNAME.log.+%d-%m-%y:%H:%M:%S"
+if [ "$USER_ID" -ne 0 ]; then
+    echo "ERROR: You need superuser privileges to install packages."
     exit 1
-    else
-    echo "Install the package"
-fi   
+else
+    echo "User has root privileges. Proceeding with installation..."
+fi
 
-
-#check packages exist or not
-#$? = 0 
-#$? = 1 to 127 failure
-
-VALIDATE(){
+# Function to validate package installation
+VALIDATE() {
     exit_status=$1
     package=$2
-    if [ $1 -ne 0 ]; then
-    echo "installation of $2 failed"
-    exit 1
+    if [ "$exit_status" -ne 0 ]; then
+        echo "ERROR: Installation of $package failed."
+        exit 1
     else
-    echo "package has been successfully installed" 
+        echo "SUCCESS: $package has been successfully installed."
     fi
 }
 
-#install
-for package in  "$@"
-do
-    dnf list installed | grep $package
-    if [ $? -ne 0 ]; then
-      dnf install $package -y
-        VALIDATE $? "$2"
+# Loop over all packages passed as arguments
+for package in "$@"; do
+    # Check if package is already installed
+    if dnf list installed "$package" >/dev/null 2>&1; then
+        echo "INFO: $package is already installed on this server."
     else
-        echo "$package already installed in the server"
-fi
+        echo "INFO: Installing $package..."
+        dnf install -y "$package" &>>$LOG_FILE
+        VALIDATE $? "$package"
+    fi
 done
-
-

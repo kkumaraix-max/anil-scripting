@@ -16,7 +16,7 @@
 
 
 ## Below one is to reset passwd user which are passed as Arguments
-PASSWORD=Anil@123
+PASSWORD=beta
 
 for USER in "$@"
 do
