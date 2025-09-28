@@ -9,7 +9,7 @@
 #Checking Access
 id=$(id -u)
 date=$(date +%d-%m-%y"_"%H:%M:%S)
-log="/tmp/$HOSTNANE.$date.log"
+log="/tmp/$HOSTNAME.$date.log"
 
 if [ $id -ne 0 ]; then
     echo "ERROR: You should have superuser privilages"
