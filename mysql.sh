@@ -9,6 +9,7 @@
 #Checking Access
 id=$(id -u)
 date=$(date +%d-%m-%y"_"%H:%M:%S)
+HOSTNAME=$(hostname | awk -F "." '{print $1F}')
 log="/tmp/$HOSTNAME.$date.log"
 
 if [ $id -ne 0 ]; then
