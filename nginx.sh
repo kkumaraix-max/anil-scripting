@@ -21,8 +21,8 @@ VALIDATE(){
 if [ $1 -ne 0 ]; then
     echo "$2 installation failed"
     exit 1
-    echo "$2 installing "
-    else 
+    else
+    echo "$2 installing "   
 fi
 }
 #install package
