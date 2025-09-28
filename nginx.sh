@@ -31,7 +31,7 @@ for package in "$@"
 do 
    if dnf list installed | grep $package
         echo "alreay $package installed"
-   else
+else   
         echo "$2 installing"  
         dnf install $package -y &>>$LOG_FILE
         VALIDATE $1 "$package"
