@@ -22,7 +22,7 @@ if [ $1 -ne 0 ]; then
     echo "$2 installation failed"
     exit 1
     else
-    echo "$2 installing "   
+    echo "$2 installing"   
 fi
 }
 #install package
@@ -32,6 +32,7 @@ do
    if [ dnf list installed | grep $package ]
         echo "alreay $package installed"
    else
+        echo "$2 installing"  
         dnf install $package -y &>>$LOG_FILE
         VALIDATE $1 "$package"
    fi
