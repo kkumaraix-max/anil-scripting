@@ -29,7 +29,7 @@ fi
 
 for package in "$@"
 do 
-   if dnf list installed | grep $package 
+   if [ dnf list installed | grep $package ]
         echo "alreay $package installed"
    else
         dnf install $package -y &>>$LOG_FILE
