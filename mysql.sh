@@ -32,7 +32,7 @@ for i in "$@"
 do 
    if dnf list installed "$i";
    then
-    echo "$i already installed"
+    echo "$i already installed"&>>$log
     else
     dnf install $i -y &>>$log
     validate $? "$i"
