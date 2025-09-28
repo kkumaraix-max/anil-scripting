@@ -11,7 +11,7 @@ id=$(id u)
 date=$(date +%d-%m-%y" "%H:%M:%S)
 log="/tmp/$HOSTNANE.$date.log"
 
-if [ $id -nq 0]; then
+if [ $id -nq 0 ]; then
     echo "ERROR: You should have superuser privilages"
     exit 1
     else
