@@ -7,11 +7,11 @@
 #explains what the script is for.
 
 #Checking Access
-id=$(id u)
-date=$(date +%d-%m-%y" "%H:%M:%S)
+id=$(id -u)
+date=$(date +%d-%m-%y"_"%H:%M:%S)
 log="/tmp/$HOSTNANE.$date.log"
 
-if [ $id -nq 0 ]; then
+if [ $id -ne 0 ]; then
     echo "ERROR: You should have superuser privilages"
     exit 1
     else
