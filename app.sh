@@ -9,6 +9,9 @@
 ##CHeck user's sudo  access
 id=$(id -u)
 DATE=$(date +%d-%m-%y" "%H:%M:%S)
+LOG="/tmp/$HOSTNAME.$DATE.log"
+
+
 if [ $id -ne 0 ]; then
    echo "Error: You dont have necessary access"
    exit 1
@@ -33,7 +36,7 @@ do
 if dnf list installed | grep "$i"; then
   echo "$i already installed"
   else
-  dnf install $i -y >>"/tmp/$HOSTNAME.$DATE.log"
+  dnf install $i -y &>>$LOG
   validate $? "$i"
   echo "$i installation completed"
 fi
