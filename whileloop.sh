@@ -2,13 +2,13 @@
 
 #while loop for printing 1 to 100
 
-#i=1
+i=1
 
-#while [ $i -lt 100 ] ## condition 
-#do
-#    echo $i
-#    i=$((i+25)) ## command
-#done
+while [ $i -lt 100 ] ## condition 
+do
+    echo $i
+    i=$((i+25)) ## command
+done
 
 Num=100
 
