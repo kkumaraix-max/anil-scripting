@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #while loop for printing 1 to 100
-echo "=====Printing from 25 ========="
+echo "=====Printing from 0 ========="
 i=0
 
 while [ $i -lt 100 ] ## condition 
