@@ -1,11 +1,11 @@
 #!/bin/bash
 
-largest=$1
+LARGEST=$1
 
 for num in "$@"
 do
-  if [ $num -gt "$largest" ];
+  if [ $num -gt "$LARGEST" ];
   then 
-  echo " $largest is greater" 
+  echo " $LARGEST is greater" 
   fi
 done
