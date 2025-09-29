@@ -10,7 +10,7 @@
 id=$(id -u)
 DATE=$(date +%d-%m-%y" "%H:%M:%S)
 HOSTNAME=$(hostname | awk -F "." '{print $1F}')
-LOG="/tmp/$HOSTNAME.$DATE.log"
+LOG=/tmp/$HOSTNAME.$DATE.log
 
 
 if [ $id -ne 0 ]; then
