@@ -2,7 +2,7 @@
 
 #while loop for printing 1 to 100
 
-i=0
+i=1
 
 while [ $i -lt 100 ]
 do
