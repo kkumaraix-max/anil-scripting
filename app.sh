@@ -8,7 +8,7 @@
 
 ##CHeck user's sudo  access
 id=$(id -u)
-DATE=$(date +%d-%m-%y " " +%H:%M:%S )
+DATE=$(date +%d-%m-%y" "%H:%M:%S)
 if [ $id -ne 0 ]; then
    echo "Error: You dont have necessary access"
    exit 1
