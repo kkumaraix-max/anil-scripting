@@ -30,11 +30,11 @@ fi
 for i in "$@"
 do 
 if [ $? -ne 0 ]; then
+  echo "$i already installed"
+  else
   dnf install $i -y
   validate $? "$i"
   echo "$i installation completed"
-  else
-  echo "$i already installed"
 fi
 done
 
