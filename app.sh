@@ -1,0 +1,45 @@
+#!/bin/bash
+#############################################################
+#purpose: to install packages as argumnet                   #
+#Author : Anil                                              #
+#Date : 29th Sep                                            #
+#Version: 1.0                                               #
+#############################################################
+
+##CHeck user's sudo  access
+id=$(id -u)
+
+if [ $id -ne 0 ]; then
+   echo "Error: You dont have necessary access"
+   exit 1
+   echo "Access validated: You have necessary access"
+fi
+
+#Fuction to validate -- reusable logic
+
+validate() {
+if [ $1 -ne 0 ]; then
+    echo "$2 insatllation failed"
+    exit 1
+    else
+    echo "$2 installation success"
+fi
+}
+
+#Install packages with help for loop passed as 
+for i in "$@"
+do 
+if [ $? -ne 0 ]; then
+  dnf install $i -y
+  validate $? "$i"
+  echo "$i installation completed"
+  else
+  echo "$i already installed"
+fi
+done
+
+
+
+
+
+
