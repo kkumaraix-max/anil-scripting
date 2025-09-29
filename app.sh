@@ -33,7 +33,7 @@ do
 if dnf list installed | grep "$i"; then
   echo "$i already installed"
   else
-  dnf install $i -y &>>/tmp/$HOSTNAME.$DATE.log
+  dnf install $i -y &>>"/tmp/$HOSTNAME.$DATE.log"
   validate $? "$i"
   echo "$i installation completed"
 fi
