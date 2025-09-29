@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#while loop for printing 1 to 100
+#while loop for printing 25 to 100
 echo "=============================="
 echo     "Printing from 0"
 echo "==============================" 
@@ -11,6 +11,8 @@ do
     echo $i
     i=$((i+25)) ## command
 done
+
+#while loop for printing 100 to 25
 echo "=============================="
 echo       "Printing from 100"
 echo "==============================" 
