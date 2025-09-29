@@ -12,7 +12,7 @@
 
 Num=100
 
-while [ $Num -gt 0 ]; then 
+while [ $Num -gt 0 ]
 do 
   echo $Num
   Num=$((Num-1))
