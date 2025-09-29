@@ -5,6 +5,10 @@
 #which could break your script if you use Bash-specific features.
 #Purpose of this script is to install package # t’s just documentation for humans — 
 #explains what the script is for.
+#Loops through all packages passed as arguments.
+#Checks if each is already installed.
+#If not, installs it and validates success/failure.
+#Logs details in $log.
 
 #Checking Access
 id=$(id -u)
@@ -28,7 +32,7 @@ validate(){
     echo "$2 installation success"
     fi
 }
-
+#packages passed as args
 for i in "$@"
 do 
    if dnf list installed "$i";
@@ -36,7 +40,7 @@ do
     echo "$i already installed"&>>$log
     else
     dnf install $i -y &>>$log
-    validate $? "$i"
+    validate $? "$i" #calls the validate function:$? = exit code of last command (dnf install).$i = package name.
     fi
 done   
    
