@@ -2,7 +2,7 @@
 
 #while loop for printing 1 to 100
 echo "=============================="
-echo                "Printing from 0"
+echo     "Printing from 0"
 echo "==============================" 
 i=0
 
