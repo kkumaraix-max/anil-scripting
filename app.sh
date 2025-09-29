@@ -29,7 +29,8 @@ fi
 #Install packages with help for loop passed as 
 for i in "$@"
 do 
-if [ $? -ne 0 ]; then
+#if [ $? -ne 0 ]; then
+if [ dnf list installed | grep $i ]; then
   echo "$i already installed"
   else
   dnf install $i -y
