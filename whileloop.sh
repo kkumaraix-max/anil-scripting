@@ -15,7 +15,7 @@ Num=100
 while [ $Num -gt 0 ]
 do 
   echo $Num
-  Num=$((Num-20))
+  Num=$((Num-25))
 
 done
 
