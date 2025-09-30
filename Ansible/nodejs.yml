@@ -6,9 +6,9 @@
      ansible.builtin.package:
        name: Nodejs
        state: present
-       
+
    - name: start Nodejs
      ansible.builtin.systemd:
        name: Nodejs
        status: started
-       enabled: true 
+       enabled: true
