@@ -1,13 +1,10 @@
 yaml
-
-
 ---
-
-- name: install & start nginx
+- name: Install & start nginx
   hosts: frontend
   become: true
   tasks:
-    - name: install nginx
+    - name: Install nginx
       ansible.builtin.package:
        name: nginx
        state: present
@@ -17,4 +14,3 @@ yaml
        name: nginx
        state: started
        enable: true
-
