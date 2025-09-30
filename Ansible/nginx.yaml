@@ -1,5 +1,3 @@
-yaml
----
 - name: Install & start nginx
   hosts: frontend
   become: true
