@@ -7,5 +7,4 @@
    - name : check given number is less than 10 or not
      ansible.builtin.debug:
       msg: "Given number {{ number }} is less than 100"
-     when: number < 100
-       
+      when: number < 100
