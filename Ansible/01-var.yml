@@ -4,7 +4,9 @@
   vars:
     USER: ANIL
     SKILLS: DevSecOps
+  
   tasks:
+
    - name: print the details
      ansible.builtin.debug:
      msg: " Details: {{ USER }} is learning {{ SKILLS }} "
