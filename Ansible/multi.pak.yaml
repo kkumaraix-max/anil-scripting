@@ -11,3 +11,8 @@
      - { name: "nginx", state: "present" }
      - { name: "mysql", state: "present" }
      - { name: "zip", state: "absent" }
+   - name: start 
+     ansible.builtin.systemd:
+      name: nginx
+      state: started
+      enabled: true  
