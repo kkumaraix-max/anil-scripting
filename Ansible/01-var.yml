@@ -2,10 +2,9 @@
   hosts: local
   connection: local
   vars:
-   NAME: Anil Kumar
+   USER: Anil Kumar
    SKILLS: DevSecOps
   tasks:
    - name: print the details
      ansible.builtin.debug:
-     msg: "{{ NAME }} is learning {{ SKILLS }}"
-     
+     msg: "{{ USER }} is learning {{ SKILLS }}"
