@@ -1,11 +1,24 @@
+#- name: variables
+#  hosts: local
+#  connection: local
+#  vars:
+#    USER: ANIL
+#    SKILLS: DevSecOps
+#  
+##  tasks:
+#  - name: print the details
+#    ansible.builtin.debug:
+#    msg: " Details: {{ USER }} is learning {{ SKILLS }} "
+
 - name: variables
   hosts: local
   connection: local
   vars:
-    USER: ANIL
-    SKILLS: DevSecOps
-  
+    USER: "Anil Kumar"
+    SKILLS: "DevSecOps"
+
   tasks:
-  - name: print the details
-    ansible.builtin.debug:
-    msg: " Details: {{ USER }} is learning {{ SKILLS }} "
+    - name: print the details
+      ansible.builtin.debug:
+        msg: "Details: {{ USER }} is learning {{ SKILLS }}"
+
