@@ -1,9 +1,6 @@
 - name: variables
   hosts: local
   connection: local
-  vars:
-    USER: ANIL
-    SKILLS: DevSecOps
   tasks:
     - name: print the details
       ansible.builtin.debug:
