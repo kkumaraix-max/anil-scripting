@@ -13,6 +13,10 @@
      - { name: "zip", state: "absent" }
    - name: start 
      ansible.builtin.systemd:
-      name: nginx
-      state: started
-      enabled: true  
+       name: "{{ item.name }}"
+       state: "{{ item.state }}"
+       enabled: "{{ item.enabled }}"
+     loop:
+      - { name: "nginx", state: "started", enabled: "true" }
+      - { name: "mysql", state: "started", enabled: "true" }
+     
