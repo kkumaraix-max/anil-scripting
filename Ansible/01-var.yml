@@ -6,7 +6,6 @@
     SKILLS: DevSecOps
   
   tasks:
-
-   - name: print the details
-     ansible.builtin.debug:
-     msg: " Details: {{ USER }} is learning {{ SKILLS }} "
+  - name: print the details
+    ansible.builtin.debug:
+    msg: " Details: {{ USER }} is learning {{ SKILLS }} "
