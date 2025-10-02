@@ -18,5 +18,5 @@
        enabled: "{{ item.enabled }}"
      loop:
       - { name: "nginx", state: "started", enabled: "true" }
-      - { name: "mysql", state: "started", enabled: "true" }
+      - { name: "mysqld", state: "started", enabled: "true" }
      
