@@ -5,6 +5,6 @@
    USER: Anil Kumar
    SKILLS: DevSecOps
   tasks:
-   - name: print the details
+     name: print the details
      ansible.builtin.debug:
      msg: "{{ USER }} is learning {{ SKILLS }}"
