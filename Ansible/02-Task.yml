@@ -2,9 +2,9 @@
   hosts: local
   connection: local
   vars:
-    USERID: anilk
-    PASSWDORD: anilk@1234
+      USERID: anilk
+      PASSWDORD: anilk@1234
   tasks:
     - name: variable
       ansible.builtin.debug:
-      msg: "Username is : {{ USERID }}, Passwprd is: {{ PASSWDORD }}" 
+      msg: " Username is : {{ USERID }}, Passwprd is: {{ PASSWDORD }} " 
