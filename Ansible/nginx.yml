@@ -9,8 +9,8 @@
        state: present
     - name: start nginx
       ansible.builtin.systemd:
-        - name: nginx
-          state: started
-          enabled: true
+        name: nginx
+        state: started
+        enabled: true
 
        
