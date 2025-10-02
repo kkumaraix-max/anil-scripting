@@ -5,6 +5,6 @@
     USERID: anilk
     PASSWDORD: anilk@1234
   tasks:
-   - name: variable
-     ansible.builtin.debug:
-     msg: "Username is : {{ USERID }}, Passwprd is: {{ PASSWDORD }}" 
+    - name: variable
+      ansible.builtin.debug:
+      msg: "Username is : {{ USERID }}, Passwprd is: {{ PASSWDORD }}" 
