@@ -11,7 +11,7 @@
          name: nginx
          state: started  
          enabled: true
-    - name:
-       ansible.builtin.debug:    
+    - name: Display message
+      ansible.builtin.debug:    
        msg: "nginx has been insatlled succesfully"
 
