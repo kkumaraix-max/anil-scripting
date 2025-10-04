@@ -23,9 +23,9 @@
        dest: /usr/share/nginx/html
    - name: copy expense content
      ansible.builtin.copy:
-     dest: /etx/nginx/default.d/expense.conf
-     content: |
-      proxy_http_version 1.1;
+       dest: /etx/nginx/default.d/expense.conf
+       content: |
+        proxy_http_version 1.1;
 
           location /api/ { 
               proxy_pass http://172.31.26.68:8080/; 
@@ -35,9 +35,9 @@
               stub_status on;
               access_log off;
           }
-        owner: root
-        group: root
-        mode: '0644'
+     owner: root
+     group: root
+     mode: '0644'
    - name: restart nginx
      ansible.builtin.service:
         name: nginx
