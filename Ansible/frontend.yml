@@ -79,9 +79,9 @@
         owner: expense
         group: expense   
     - name: Install Node.js dependencies
-      ansible.builtin.npm:
-        path: /app
-        production: true
+      ansible.builtin.shell: npm install
+      args:
+        chdir: /app
         become: true
         become_user: expense
     - name: Configure Backend service for Expense project
