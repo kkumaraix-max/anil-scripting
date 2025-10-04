@@ -19,8 +19,9 @@
       dest: /tmp/frontend
    - name: unzipdownloaded code
      ansible.builtin.unarchive:
-       src: /tmp/frontend
+       src: /tmp/frontend.zip
        dest: /usr/share/nginx/html
+       remote_src: yes
    - name: copy expense content
      ansible.builtin.copy:
        dest: /etc/nginx/default.d/expense.conf
