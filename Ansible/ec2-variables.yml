@@ -1,5 +1,5 @@
 AWS_REGION: "us-east-1"
-AMI_ID: "ami-"
+AMI_ID: "ami-09c813fb71547fc4f"
 INSTANCE_TYPE: "t3.micro"
 SG_ID: "sg-0a1153447ef389531"
 SUBNET_ID: "subnet-020212cc6f7fa5043"
