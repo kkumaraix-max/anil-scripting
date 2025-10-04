@@ -101,7 +101,7 @@
 
           [Service]
           User=expense
-          Environment=DB_HOST="{{ db_host }}"
+          Environment=DB_HOST="{{ mysql.anilkathoju.space }}"
           ExecStart=/bin/node /app/index.js
           SyslogIdentifier=backend
 
@@ -110,6 +110,13 @@
         owner: root
         group: root
         mode: '0644'
+    - name: Installing mysql client
+      ansible.builtin.package:
+      name: mysql
+      state: present   
+    - name: Import backend schema using shell
+      ansible.builtin.shell: "mysql -h database.sureshdevops.fun -uroot -pExpenseApp@1 < /app/schema/backend.sql"
+         
     - name: reload backend service
       ansible.builtin.systemd:
         name: backend
