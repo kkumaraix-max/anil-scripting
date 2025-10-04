@@ -1,0 +1,36 @@
+- name: Setup Frontend
+  hosts: frontend
+  become: true
+  tasks:
+   - name: isntall nginx
+     ansible.builtin.package:
+       name: nginx
+       state: present
+   - name: start nginx
+     ansible.builtin.service:     
+       name: nginx
+       state: started
+       enabled: true
+
+   - name: delete existing files form /usr/share/nginx/html 
+     ansible.builtin.command: rm -rf /usr/share/nginx/html/*
+   - name: download code
+     ansible.builtin.get_url:
+      url: https://expense-joindevops.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
+      dest: /tmp/frontend
+   - name: unzip downloaded code
+     ansible.builtin.unarchive:
+     src: /tmp/frontend
+     dest: /usr/share/nginx/html
+     remote_src: yes
+   -  name: copy expense content to /etc/nginx/default.d/expense.conf
+      vars_files:
+        - course.yml
+      tasks:
+        - name: copy
+          ansible.builtin.copy:
+          dest: /etc/nginx/default.d/expense.conf
+          content: "{{ course.yml }}"
+          owner: root
+          group: root
+          mode: '0644'

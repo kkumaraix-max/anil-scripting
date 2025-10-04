@@ -1,4 +1,4 @@
-- name: expense project -frontend
+- name: expense project -frontend # Frontend
   hosts: frontend
   become: true
   tasks:
@@ -20,14 +20,15 @@
       ansible.builtin.get_url: 
         url: https://expense-joindevops.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
         dest: /tmp/frontend.zip
-    - name: creating directory
-      ansible.builtin.command: mkdir -p /app
     - name: unzip files
       ansible.builtin.unarchive:
         src: /tmp/frontend.zip
         dest: /usr/share/nginx/html
         remote_src: yes
     - name: Configure Nginx for Expense project
+      vars_files:
+        - =======#################===============
+
       ansible.builtin.copy:
         dest: /etc/nginx/default.d/expense.conf
         content: |
@@ -50,7 +51,7 @@
         name: nginx
         state: reloaded    
 
-- name: expense project - backend
+- name: expense project - backend #Backend
   hosts: backend
   become: true
   tasks:
@@ -137,7 +138,7 @@
         msg: "Backend service is {{ backend_status.status.ActiveState }}"   
 
 
-- name: expense project - mysql
+- name: expense project - mysql #MYSQL 
   hosts: DB
   become: true
   tasks:
