@@ -9,4 +9,4 @@
       vars:
        USERID: Kavyakathoju
       ansible.builtin.debug:
-       msg: "Username is : {{ USERID }}, Passwprd is: {{ PASSWDORD }}" 
+       msg: "Username is : {{ USERID }}, Passw0rd is: {{ PASSWDORD }}" 

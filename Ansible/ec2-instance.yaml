@@ -1,0 +1,52 @@
+- name: Create multiple instances
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars_files:
+   - ec2-variables.yml
+
+  tasks:
+    - name: Launch EC2 instances
+      amazon.aws.ec2_instance:
+        name: "{{ item.name }}"
+        instance_type: "{{ INSTANCE_TYPE }}"
+        image_id: "{{ AMI_ID }}"
+        region: "{{ AWS_REGION }}"
+        vpc_subnet_id: "{{ SUBNET_ID }}"
+        security_group: "{{ SG_ID }}"
+        wait: true
+        count: 1
+      loop: "{{ INSTANCES }}"
+      register: ec2_results
+
+    - name: Build DNS records list
+      set_fact:
+        dns_records: >-
+          {{
+            dns_records | default([]) +
+            [ {
+                'name': (item.item.type == 'public')
+                        | ternary(DOMAIN, item.item.name ~ '.' ~ DOMAIN),
+                'value': (item.instances[0].public_ip_address
+                          if item.item.type == 'public'
+                          else item.instances[0].private_ip_address)
+              } ]
+          }}
+      loop: "{{ ec2_results.results }}"
+
+    - name: Print DNS mapping
+      debug:
+        var: dns_records
+
+    - name: Update Route53 records
+      amazon.aws.route53:
+        state: present
+        zone: "{{ ZONE_ID }}"
+        record: "{{ item.name }}"
+        type: A
+        ttl: 1
+        value: "{{ item.value }}"
+      loop: "{{ dns_records }}"
+
+      
+
