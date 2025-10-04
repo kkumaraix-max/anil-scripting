@@ -101,7 +101,7 @@
 
           [Service]
           User=expense
-          Environment=DB_HOST="{{ mysql.anilkathoju.space }}"
+          Environment=DB_HOST="172.31.29.246"
           ExecStart=/bin/node /app/index.js
           SyslogIdentifier=backend
 
@@ -109,7 +109,7 @@
           WantedBy=multi-user.target
         owner: root
         group: root
-        mode: "0644"
+        mode: '0644'
     - name: Installing mysql client
       ansible.builtin.shell: sudo dnf install mysql -y
         
