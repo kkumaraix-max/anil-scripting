@@ -113,8 +113,14 @@
     - name: Installing mysql client
       ansible.builtin.shell: sudo dnf install mysql -y
         
-    - name: Import backend schema using shell
-      ansible.builtin.shell: "mysql -h 172.31.29.246 -uroot -pExpenseApp@1 < /app/schema/backend.sql"
+    - name: Import backend schema
+      community.mysql.mysql_db:
+        name: expense_backend
+        state: import
+        target: /app/schema/backend.sql
+        login_user: root
+        login_password: ExpenseApp@1
+        login_host: 172.31.29.246
          
     - name: reload backend service
       ansible.builtin.systemd:
