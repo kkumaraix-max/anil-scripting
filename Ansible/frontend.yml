@@ -18,11 +18,11 @@
      ansible.builtin.get_url:
       url: https://expense-joindevops.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
       dest: /tmp/frontend
-   - name: unzip downloaded code
+   - name: unzipdownloaded code
      ansible.builtin.unarchive:
-     src: /tmp/frontend
-     dest: /usr/share/nginx/html
-     remote_src: yes
+       src: /tmp/frontend
+       dest: /usr/share/nginx/html
+       remote_src: yes
    -  name: copy expense content to /etc/nginx/default.d/expense.conf
       vars_files:
         - course.yml
