@@ -1,4 +1,4 @@
-- name: expense project
+- name: expense project -frontend
   hosts: frontend
   become: true
   tasks:
@@ -14,4 +14,41 @@
     - name: Display message
       ansible.builtin.debug:    
        msg: "nginx has been insatlled succesfully"
+
+- name: expense project - backend
+  hosts: backend
+  become: true
+  tasks:
+    - name: disable nodejs
+      ansible.builtin.shell: dnf module disable nodejs -y
+    - name:  enable nodejs
+      ansible.builtin.shell: dnf module enable nodejs:20 -y
+    - name: install nodejs
+      ansible.builtin.shell: dnf install nodejs -y
+    - name: Create 'expense' user
+      ansible.builtin.user:
+        name: expense
+        state: present
+    - name: directory
+      ansible.builtin.command: mkdir /app
+    - name: download packages
+      ansible.builtin.get_url:
+        url: https://expense-joindevops.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
+        dest: /tmp/backend.zip
+        mode: '0644'
+    - name: print backend setup cpmpleted    
+
+- name: expense project - mysql
+  hosts: DB
+  become: true
+  tasks:
+    - name: install mysql
+      ansible.builtin.shell: dnf install mysql-server -y
+      name: mysqld
+      enabled: true
+      state: started
+    - name: default root password in order to start using the database service
+      ansible.builtin.shell: mysql_secure_installation --set-root-pass ExpenseApp@1
+
+
 
