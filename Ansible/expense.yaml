@@ -109,11 +109,10 @@
           WantedBy=multi-user.target
         owner: root
         group: root
-        mode: '0644'
+        mode: "0644"
     - name: Installing mysql client
-      ansible.builtin.package:
-      name: mysql
-      state: present   
+      ansible.builtin.shell: sudo dnf install mysql -y
+        
     - name: Import backend schema using shell
       ansible.builtin.shell: "mysql -h database.sureshdevops.fun -uroot -pExpenseApp@1 < /app/schema/backend.sql"
          
