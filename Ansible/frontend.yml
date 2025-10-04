@@ -62,6 +62,7 @@
     - name: creat directory
       ansible.builtin.file:
          path: /app
+         state: directory
          owner: expense
          group: expense
          mode: '0755'
