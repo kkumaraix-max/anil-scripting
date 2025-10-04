@@ -114,7 +114,7 @@
       ansible.builtin.shell: sudo dnf install mysql -y
         
     - name: Import backend schema using shell
-      ansible.builtin.shell: "mysql -h mysql.anilkathoju.space -uroot -pExpenseApp@1 < /app/schema/backend.sql"
+      ansible.builtin.shell: "mysql -h 172.31.29.246 -uroot -pExpenseApp@1 < /app/schema/backend.sql"
          
     - name: reload backend service
       ansible.builtin.systemd:
