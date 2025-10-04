@@ -23,7 +23,7 @@
        dest: /usr/share/nginx/html
    - name: copy expense content
      ansible.builtin.copy:
-       dest: /etx/nginx/default.d/expense.conf
+       dest: /etc/nginx/default.d/expense.conf
        content: |
         proxy_http_version 1.1;
 
