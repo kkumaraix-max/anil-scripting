@@ -71,6 +71,8 @@
         url: https://expense-joindevops.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
         dest: /tmp/backend.zip
         mode: '0644'
+    - name: directory
+      ansible.builtin.command: mkdir /app    
     - name: print backend setup cpmpleted
       ansible.builtin.debug:
         msg: "nodejs setup cpmpleted"
