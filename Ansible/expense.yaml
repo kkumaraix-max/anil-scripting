@@ -1,0 +1,11 @@
+- name: expense project
+  hosts: frontend
+  become: true
+  tasks:
+   - name: install nginx
+     ansible.builtin.package:
+      name: nginx
+      state: present
+      enabled: true
+     msg: " nginx has been insatlled succesfully"
+
