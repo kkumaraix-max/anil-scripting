@@ -16,17 +16,17 @@
    - name: download code
      ansible.builtin.get_url:
       url: https://expense-joindevops.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
-      dest: /tmp/frontend
+      dest: /tmp/frontend.zip
    - name: unzipdownloaded code
      ansible.builtin.unarchive:
        src: /tmp/frontend.zip
        dest: /usr/share/nginx/html
        remote_src: yes
-       name: copying expense content
-       ansible.builtin.copy:
-       dest: /etc/nginx/default.d/expense.conf
-       content: |
-        proxy_http_version 1.1;
+   - name: copying expense content
+     ansible.builtin.copy:
+        dest: /etc/nginx/default.d/expense.conf
+        content: |
+          proxy_http_version 1.1;
 
           location /api/ { 
               proxy_pass http://172.31.26.68:8080/; 
@@ -36,9 +36,9 @@
               stub_status on;
               access_log off;
           }
-     owner: root
-     group: root
-     mode: '0644'
+        owner: root
+        group: root
+        mode: '0644'
    - name: restart nginx
      ansible.builtin.service:
         name: nginx
