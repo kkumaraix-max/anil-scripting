@@ -34,3 +34,7 @@
           owner: root
           group: root
           mode: '0644'
+   - name: starting nginx
+     ansible.builtin.service:
+       name: nginx
+       state: started
