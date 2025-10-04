@@ -14,6 +14,41 @@
     - name: Display message
       ansible.builtin.debug:    
        msg: "nginx has been insatlled succesfully"
+    - name: delete old files
+      ansible.builtin.command: rm -rf /usr/share/nginx/html/*
+    - name: downlaod code
+      ansible.builtin.get_url: 
+        url: https://expense-joindevops.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
+        dest: /tmp/frontend.zip
+    - name: creating directory
+      ansible.builtin.command: mkdir -p /app
+    - name: unzip files
+      ansible.builtin.unarchive:
+        src: /tmp/frontend.zip
+        dest: /usr/share/nginx/html
+        remote_src: yes
+    - name: Configure Nginx for Expense project
+      ansible.builtin.copy:
+        dest: /etc/nginx/default.d/expense.conf
+        content: |
+          proxy_http_version 1.1;
+
+          location /api/ { 
+              proxy_pass http://172.31.25.26:8080/; 
+          }
+
+          location /health {
+              stub_status on;
+              access_log off;
+          }
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Reload Nginx to apply configuration
+      ansible.builtin.service:
+        name: nginx
+        state: reloaded    
 
 - name: expense project - backend
   hosts: backend
@@ -39,6 +74,48 @@
     - name: print backend setup cpmpleted
       ansible.builtin.debug:
         msg: "nodejs setup cpmpleted"
+    - name: unzip files
+      ansible.builtin.unarchive:
+        src: /tmp/backend.zip
+        dest: /app
+        remote_src: yes
+    - name: Install Node.js dependencies
+      ansible.builtin.command: npm install
+      args:
+        chdir: /app
+      become_user: expense   
+    - name: Configure Backend service for Expense project
+      ansible.builtin.copy:
+        dest: /etc/systemd/system/backend.service
+        content: |
+          [Unit]
+          Description=Backend Service
+
+          [Service]
+          User=expense
+          Environment=DB_HOST="{{ db_host }}"
+          ExecStart=/bin/node /app/index.js
+          SyslogIdentifier=backend
+
+          [Install]
+          WantedBy=multi-user.target
+        owner: root
+        group: root
+        mode: '0644'
+    - name: reload backend service
+      ansible.builtin.systemd:
+        name: backend
+        state: started
+        enabled: true  
+    - name: Check backend service status
+      ansible.builtin.systemd:
+        name: backend
+        register: backend_status
+
+    - name: Display backend service status
+      ansible.builtin.debug:
+        msg: "Backend service is {{ backend_status.status.ActiveState }}"   
+
 
 - name: expense project - mysql
   hosts: DB
