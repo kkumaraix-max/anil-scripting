@@ -2,9 +2,10 @@
   hosts: frontend
   become: true
   tasks:
-   - name: nginx
-     ansible.builtin.package:
+    - name: nginx
+      ansible.builtin.package:
+       name: nginx
        state: present
        enabled: true
-     msg: "nginx has been insatlled succesfully"
+       msg: "nginx has been insatlled succesfully"
 
