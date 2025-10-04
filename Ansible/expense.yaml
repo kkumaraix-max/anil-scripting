@@ -83,7 +83,8 @@
       ansible.builtin.command: npm install
       args:
         chdir: /app
-      become_user: expense   
+      become: true
+      become_user: expense  
     - name: Configure Backend service for Expense project
       ansible.builtin.copy:
         dest: /etc/systemd/system/backend.service
