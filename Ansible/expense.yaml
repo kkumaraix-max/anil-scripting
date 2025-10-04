@@ -64,15 +64,20 @@
       ansible.builtin.user:
         name: expense
         state: present
-    - name: directory
-      ansible.builtin.command: mkdir /app
+  
+    - name: Create app directory
+      ansible.builtin.file:
+        path: /app
+        state: directory
+        owner: expense
+        group: expense
+        mode: "0755" 
     - name: download packages
       ansible.builtin.get_url:
         url: https://expense-joindevops.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
         dest: /tmp/backend.zip
         mode: '0644'
-    - name: directory
-      ansible.builtin.command: mkdir /app    
+       
     - name: print backend setup cpmpleted
       ansible.builtin.debug:
         msg: "nodejs setup cpmpleted"
