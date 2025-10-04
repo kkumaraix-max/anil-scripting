@@ -36,7 +36,9 @@
         url: https://expense-joindevops.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
         dest: /tmp/backend.zip
         mode: '0644'
-    - name: print backend setup cpmpleted    
+    - name: print backend setup cpmpleted
+      ansible.builtin.debug:
+        msg: "nodejs setup cpmpleted"
 
 - name: expense project - mysql
   hosts: DB
