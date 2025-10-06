@@ -102,7 +102,7 @@
 
           [Service]
           User=expense
-          Environment=DB_HOST="172.31.29.246"
+          Environment=DB_HOST="172.31.17.123"
           ExecStart=/bin/node /app/index.js
           SyslogIdentifier=backend
 
