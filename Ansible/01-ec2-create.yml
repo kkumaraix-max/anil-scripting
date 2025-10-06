@@ -34,7 +34,7 @@
        ttl: 1
        value: "{{ item.instances[0].private_ip_address }}"
        overwrite: true
-       alue: "{{ item.instances[0].public_ip_address }}"
+       value: "{{ item.instances[3].public_ip }}"
        when: item.item == "frontend" 
      loop: "{{ ec2_output.results }}"
    - name: print hostname and private ip
@@ -43,7 +43,7 @@
      loop: "{{ ec2_output.results }}"
    - name: print public ip
      ansible.builtin.debug:
-       msg: "{{item.item}} : {{item.instances[0].public_ip_address }}"
+       msg: "{{item.item}} : {{item.instances[0].public_ip }}"
        when: item.item == frontend
      loop: "{{ ec2_output.results }}"
 
