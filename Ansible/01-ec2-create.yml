@@ -28,4 +28,15 @@
      ansible.builtin.debug:
       msg: "{{ item.item }} : {{ item.instances[0].private_ip_address }}"
      loop: "{{ ec2_output.results }}"
+   - name: update r53
+     amazon.aws.route53:
+       state:  present
+       zone: "{{ domain }}"
+       record: "{{ item.item }}.{{ domain }}" #mongodb.anilkathoju.space
+       type: A
+       ttl: 1
+       value: "{{ item.insatnce[0].private_ip_address }}"
+       overwrite: true
+     loop: "{{ ec2_output.results }}"
+
             
