@@ -6,6 +6,7 @@
     sg_id: sg-0a1153447ef389531
     domain: "anilkathoju.space"
     zone_id: "Z096778411CYC46C0VA5Q"
+    loop: "{{ instances }}"  
     instances:
       - mongodb
       - redis
@@ -29,7 +30,7 @@
      amazon.aws.route53:
        state: present
        zone: "{{ domain }}"
-       record: "{{ item.item }}.{{ domain }}" #mongodb.anilkathoju.space
+       record: "{{ item.item }}.{{ domain }}"
        type: A
        ttl: 1
        value: "{{ item.instances[0].private_ip_address }}"
@@ -37,20 +38,19 @@
      loop: "{{ ec2_output.results }}"
    - name: create r53 record for frontend public ip
      amazon.aws.route53:
-      zone: example.com
-      record: frontend.example.com
-      type: A
-      ttl: 1
-      value: "{{ item.instances[0].public_ip_address }}"
+       zone: example.com
+       record: frontend.example.com
+       type: A
+       ttl: 1
+       value: "{{ item.instances[0].public_ip_address }}"
      loop: "{{ ec2_instances.results }}"
      when: item.item == "frontend"
    - name: print hostname and private ip
      ansible.builtin.debug:
-      msg: "{{ item.item }} : {{ item.instances[0].private_ip_address }}"
+       msg: "{{ item.item }} : {{ item.instances[0].private_ip_address }}"
      loop: "{{ ec2_output.results }}"
-
    - name: print public ip
      ansible.builtin.debug:
-      msg: "{{ item.item }} : {{ item.instances[0].public_ip_address }}"
-      when: item.item == "frontend"
+       msg: "{{ item.item }} : {{ item.instances[0].public_ip_address }}"
+       when: item.item == "frontend"
      loop: "{{ ec2_output.results }}"
