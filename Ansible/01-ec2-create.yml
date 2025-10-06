@@ -8,8 +8,8 @@
     zone_id: "Z096778411CYC46C0VA5Q"
     instances:
       - mongodb
-   #  - redis
-   #  - mysql
+      - redis
+      - mysql
   tasks:
    - name: start an instance
      amazon.aws.ec2_instance:
