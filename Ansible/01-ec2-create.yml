@@ -24,9 +24,9 @@
    - name: print ec2_output
      ansible.builtin.debug:
        msg: "{{ ec2_output }}"
-   - name: update r53
+   - name: create r53 record
      amazon.aws.route53:
-       state:  present
+       state: present
        zone: "{{ domain }}"
        record: "{{ item.item }}.{{ domain }}" #mongodb.anilkathoju.space
        type: A
