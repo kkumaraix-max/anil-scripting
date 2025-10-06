@@ -4,8 +4,8 @@
   vars:
     ami_id: ami-09c813fb71547fc4f
     sg_id: sg-0a1153447ef389531
-    domain: anilkathoju.space
-    zone_id: Z096778411CYC46C0VA5Q
+    domain: "anilkathoju.space"
+    zone_id: "Z096778411CYC46C0VA5Q"
     instances:
       - mongodb
    #  - redis
@@ -18,6 +18,10 @@
       security_group: "{{ sg_id }}"
       image_id: "{{ ami_id }}"
       tags:
-       Name: "{{ item }}"
-       loop: "{{ instances }}"
-       register: ec2_output
+        Name: "{{ item }}"
+        loop: "{{ instances }}"
+        register: ec2_output
+  - name: print ec2_output
+    ansible.builtin.debug:
+      msg: "{{ ec2_output }}"
+            
