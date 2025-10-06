@@ -24,10 +24,6 @@
    - name: print ec2_output
      ansible.builtin.debug:
        msg: "{{ ec2_output }}"
-   - name: print hostname and private ip
-     ansible.builtin.debug:
-      msg: "{{ item.item }} : {{ item.instances[0].private_ip_address }}"
-     loop: "{{ ec2_output.results }}"
    - name: update r53
      amazon.aws.route53:
        state:  present
