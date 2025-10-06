@@ -42,7 +42,7 @@
       record: "{{ domain }}"
       type: A
       ttl: 1
-      value: "{{ public_ip }}"
+      value: "{{ public_ip_address }}"
       overwrite: true
       when: item.item == "frontend"
      loop: "{{ ec2_output.results }}"  
@@ -52,7 +52,7 @@
      loop: "{{ ec2_output.results }}"
    - name: print public ip
      ansible.builtin.debug:
-       msg: "{{item.item}} : {{item.instances[0].public_ip }}"
+       msg: "{{item.item}} : {{item.instances[0].public_ip_address }}"
        when: item.item == frontend
      loop: "{{ ec2_output.results }}"
 
