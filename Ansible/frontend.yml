@@ -39,11 +39,16 @@
         name: mysql
         state: present
     - name: load schema
-      ansible.builtin.command: mysql -h mysql.anilkathoju.space -uroot -pExpenseApp@1 < /app/schema/backend.sql
+      ansible.builtin.shell: mysql -h mysql.anilkathoju.space -uroot -pExpenseApp@1 < /app/schema/backend.sql
+      when: catalogue_output.stdout | int < 0
       register: backend_output
     - name: enable and start mysql
       ansible.builtin.service:
         name: mysqld
         enabled: true
         state: started  
-
+    - name: start backend services
+      ansible.builtin.service:
+         name: backend
+         enabled: true
+         state: started
