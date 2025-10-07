@@ -15,7 +15,7 @@
       ansible.builtin.command: rm -rf /usr/share/nginx/html/*
     - name: download code
       ansible.builtin.get_url: 
-        src: https://expense-joindevops.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
+        url: https://expense-joindevops.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
         dest: /tmp/frontend.zip
     - name: unzip code
       ansible.builtin.unarchive:
