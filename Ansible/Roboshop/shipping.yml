@@ -26,8 +26,8 @@
          dest: /app
          remote_src: yes
     
-    - name: validate mvn
-      ansible.builtin.command: mvn validate
+  # - name: validate mvn
+ #   ansible.builtin.command: mvn validate
     - name: comple
       ansible.builtin.command: mvn compile
     - name: test
