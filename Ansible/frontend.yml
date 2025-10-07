@@ -1,109 +1,46 @@
-- name: Setup Frontend
-  hosts: frontend
-  become: true
-  tasks:
-   - name: isntall nginx
-     ansible.builtin.package:
-       name: nginx
-       state: present
-   - name: start nginx
-     ansible.builtin.service:     
-       name: nginx
-       state: started
-       enabled: true
-   - name: delete existing files form /usr/share/nginx/html 
-     ansible.builtin.command: rm -rf /usr/share/nginx/html/*
-   - name: download code
-     ansible.builtin.get_url:
-      url: https://expense-joindevops.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
-      dest: /tmp/frontend.zip
-   - name: unzipdownloaded code
-     ansible.builtin.unarchive:
-       src: /tmp/frontend.zip
-       dest: /usr/share/nginx/html
-       remote_src: yes
-   - name: copying expense content
-     ansible.builtin.copy:
-        dest: /etc/nginx/default.d/expense.conf
-        content: |
-          proxy_http_version 1.1;
-
-          location /api/ { 
-              proxy_pass http://172.31.26.68:8080/; 
-          }
-
-          location /health {
-              stub_status on;
-              access_log off;
-          }
-        owner: root
-        group: root
-        mode: '0644'
-   - name: restart nginx
-     ansible.builtin.service:
-        name: nginx
-        state: restarted
-- name: Setup backend #Setup backend
+- name: setup backend
   hosts: backend
   become: true
   tasks:
-    - name: disabling nodejs
-      ansible.builtin.shell: dnf module disable nodejs -y
-    - name: enabling nodejs  
-      ansible.builtin.shell: dnf module enable nodejs:20 -y
-    - name: install nodejs  
-      ansible.builtin.package:
-        name: nodejs
-        state: present
-    - name: create user
+    - name: disable nodejs
+      ansible.builtin.command: dnf module disable nodejs -y
+    - name: enable nodejs
+      ansible.builtin.command: dnf module enable nodejs:20 -y
+    - name: install nodejs
+      ansible.builtin.command: dnf install nodejs -y
+    - name: create user expense
       ansible.builtin.user:
-        name: expense
-        state: present
-    - name: creat directory
+       name: expense
+       comment: user to run app
+    - name: Change file ownership, group and permissions
       ansible.builtin.file:
-         path: /app
-         state: directory
-         owner: expense
-         group: expense
-         mode: '0755'
-    - name: downloading code
-      ansible.builtin.get_url:
+        path: /app
+    - name: download code
+      ansible.builtin.get_url:     
         url: https://expense-joindevops.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
         dest: /tmp/backend.zip
-        mode: '0644'
-    - name: extract code to app 
+    - name: Extract code
       ansible.builtin.unarchive:
         src: /tmp/backend.zip
         dest: /app
         remote_src: yes
-        owner: expense
-        group: expense   
-    - name: Install Node.js dependencies
-      ansible.builtin.command: npm install
-      args:
-        chdir: /app
-      become: true
-      become_user: expense  
-    - name: Configure Backend service for Expense project
+    - name: install dependencies
+      community.general.npm:
+        path: /app
+    - name: copy backend service content 
       ansible.builtin.copy:
+        src: backend.service
         dest: /etc/systemd/system/backend.service
-        content: |
-          [Unit]
-          Description=Backend Service
+    - name: install mysql
+      ansible.builtin.package:
+        name: mysql
+        state: present
+    - name: load schema
+      ansible.builtin.command: mysql -h mysql.anilkathoju.space -uroot -pExpenseApp@1 < /app/schema/backend.sql
+      register: backend_output
+    - name: enable and start mysql
+      ansible.builtin.servcie:
+        name: mysqld
+        enabled: true
+        state: started  
 
-          [Service]
-          User=expense
-          Environment=DB_HOST="172.31.17.123"
-          ExecStart=/bin/node /app/index.js
-          SyslogIdentifier=backend
-
-          [Install]
-          WantedBy=multi-user.target
-        owner: root
-        group: root
-        mode: '0644'
-
-   
-
-
-     
