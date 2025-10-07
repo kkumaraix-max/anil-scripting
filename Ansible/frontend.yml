@@ -39,7 +39,7 @@
       ansible.builtin.command: mysql -h mysql.anilkathoju.space -uroot -pExpenseApp@1 < /app/schema/backend.sql
       register: backend_output
     - name: enable and start mysql
-      ansible.builtin.servcie:
+      ansible.builtin.service:
         name: mysqld
         enabled: true
         state: started  
