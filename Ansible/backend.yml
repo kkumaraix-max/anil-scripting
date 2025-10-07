@@ -38,7 +38,10 @@
       ansible.builtin.package:
         name: mysql
         state: present
-        
+    - name: check if schema already loaded
+      ansible.builtin.shell: mysql -h 172.31.6.224 -uroot -pExpenseApp@1 -e "show databases like 'expenses';" | wc -l
+      register: backend_output
+
     - name: load schema
       ansible.builtin.shell: mysql -h 172.31.6.224 -uroot -pExpenseApp@1 < /app/schema/backend.sql
       when: backend_output.stdout | int == 0
