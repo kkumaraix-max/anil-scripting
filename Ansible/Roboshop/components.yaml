@@ -8,7 +8,7 @@
     DOMAIN: "anilkathoju.space"
     ZONE_ID: "Z096778411CYC46C0VA5Q"
     instances:
-      - mongoDB
+      - mongodb
   tasks:
     - name: start an instance
       amazon.aws.ec2_instance:
