@@ -53,19 +53,19 @@
       ansible.builtin.command: mongosh mongodb.anilkathoju.space --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')"
       register: catalogue_output
 
-    - name: evaluate cataalogue database
-      community.mongodb.mongodb_shell:
-        login_host: mongodb.anilkathoju.space
-        eval: db.getMongo().getDBNames().indexOf('catalogue')
-      register: catalogue_output
+#    - name: evaluate catalogue database
+#      community.mongodb.mongodb_shell:
+#        login_host: mongodb.anilkathoju.space
+#        eval: db.getMongo().getDBNames().indexOf('catalogue')
+#      register: catalogue_output
 
-    - name: print catalogue output
-      ansible.builtin.debug:
-        msg: "{{ catalogue_output }}"  
+#    - name: print catalogue output
+#      ansible.builtin.debug:
+#        msg: "{{ catalogue_output }}"  
 
-    - name: load products into mongodb
+    - name: load prodcts to mongodb
       ansible.builtin.shell: mongosh --host mongodb.anilkathoju.space </app/db/master-data.js
-      when: catalogue_output.stdout | int < 0  
+      when: catalogue_output.stdout | int == 0
 
     - name: enable & start mongosh
       ansible.builtin.service:
