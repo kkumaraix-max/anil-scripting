@@ -17,7 +17,7 @@
        security_group: "{{ SG_ID }}"
        image_id: "{{ AMI_ID }}"
       tags:
-         Name: "{{ item }}"
+        name: "{{ item }}"
       loop: "{{ instances }}"
       register: ec2_output
     - name: print ec2_output
