@@ -1,0 +1,53 @@
+- name: setup shipping
+  hosts: shipping
+  become: true
+  tasks:
+    - name: installing maven
+      ansible.builtin.command: dnf install maven -y
+
+    - name: Adding application User
+      ansible.builtin.user:
+        name: roboshop
+        comment: RoboShop System user
+        system: true
+        shell: /sbin/nologin
+        home: /app
+    - name: create app directory
+      ansible.builtin.file:
+         state: directory
+         path: /app
+    - name: Download the application code 
+      ansible.builtin.get_url:
+         url: https://roboshop-artifacts.s3.amazonaws.com/shipping-v3.zip
+         dest: /tmp/shipping.zip
+    - name: unzip code
+      ansible.builtin.unarchive:
+         src: /tmp/shipping.zip
+         dest: /app
+         remote_src: yes
+    
+    - name: clean mvn
+      ansible.builtin.shell: mvn clean package
+
+    - name: move
+      ansible.builtin.copy:
+         src: /app/target/shipping-1.0.jar
+         dest: shipping.jar
+         remote_src: yes
+
+    - name: Setup SystemD shipping Service
+      ansible.builtin.copy:
+         src: shipping.service
+         dest: /etc/systemd/system/shipping.service    
+
+    - name: install mysql server
+      ansible.builtin.package:
+        name: mysql-server
+        state: present
+
+  
+
+
+        
+
+  
