@@ -7,13 +7,16 @@
     - name: enable nodejs
       ansible.builtin.command: dnf module enable nodejs:20 -y
     - name: install nodejs
-      ansible.builtin.command: dnf install nodejs -y
+      ansible.builtin.package:
+        name: nodejs
+        state: present
     - name: create user expense
       ansible.builtin.user:
        name: expense
        comment: user to run app
-    - name: Change file ownership, group and permissions
+    - name: Creating /app
       ansible.builtin.file:
+        state: directory
         path: /app
     - name: download code
       ansible.builtin.get_url:     
