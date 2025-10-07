@@ -34,10 +34,12 @@
       ansible.builtin.copy:
         src: backend.service
         dest: /etc/systemd/system/backend.service
-    - name: install mysql
+
+    - name: install mysql server
       ansible.builtin.package:
-        name: mysql
+        name: mysql-server
         state: present
+
     - name: check if schema already loaded
       ansible.builtin.shell: mysql -h 172.31.6.224 -uroot -pExpenseApp@1 -e "show databases like 'expenses';" | wc -l
       register: backend_output
@@ -51,6 +53,7 @@
         name: mysqld
         enabled: true
         state: started  
+
     - name: start backend services
       ansible.builtin.service:
         name: backend
