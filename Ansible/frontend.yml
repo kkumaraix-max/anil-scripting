@@ -21,6 +21,7 @@
       ansible.builtin.unarchive:
         src: /tmp/frontend.zip
         dest: /usr/share/nginx/html/
+        remote_src: yes
     - name: nginx Reverse Proxy Configuration.
       ansible.builtin.copy:
         src: expense.conf
