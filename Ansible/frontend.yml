@@ -40,7 +40,7 @@
         state: present
     - name: load schema
       ansible.builtin.shell: mysql -h mysql.anilkathoju.space -uroot -pExpenseApp@1 < /app/schema/backend.sql
-      # when: _output.stdout | int < 0
+      when: backend_output.stdout | int < 0
       register: backend_output
     - name: enable and start mysql
       ansible.builtin.service:
