@@ -9,14 +9,13 @@
     ZONE_ID: "Z096778411CYC46C0VA5Q"
     instances:
       - mongoDB
-
   tasks:
     - name: start an instance
       amazon.aws.ec2_instance:
        name: "{{ item }}"
        instance_type: t3.micro
-      security_group: "{{ SG_ID }}"
-      image_id: "{{ AMI_ID }}"
+       security_group: "{{ SG_ID }}"
+       image_id: "{{ AMI_ID }}"
       tags:
          Name: "{{ item }}"
       loop: "{{ instances }}"
