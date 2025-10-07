@@ -55,7 +55,7 @@
 
     - name: evaluate cataalogue database
       community.mongodb.mongodb_shell:
-        login_host: mongodb.daws86s.fun
+        login_host: mongodb.anilkathoju.space
         eval: db.getMongo().getDBNames().indexOf('catalogue')
       register: catalogue_output
 
@@ -64,7 +64,7 @@
         msg: "{{ catalogue_output }}"  
 
     - name: load products into mongodb
-      ansible.builtin.shell: mongosh --host ongodb.anilkathoju.space </app/db/master-data.js
+      ansible.builtin.shell: mongosh --host mongodb.anilkathoju.space </app/db/master-data.js
       when: catalogue_output.stdout | int < 0  
 
     - name: enable & start mongosh
