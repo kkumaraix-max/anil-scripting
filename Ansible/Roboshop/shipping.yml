@@ -27,7 +27,7 @@
          remote_src: yes
     
     - name: clean mvn
-      ansible.builtin.shell: mvn clean package
+      ansible.builtin.command: mvn clean package
 
     - name: move
       ansible.builtin.copy:
