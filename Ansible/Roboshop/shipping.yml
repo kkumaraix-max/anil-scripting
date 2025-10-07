@@ -26,24 +26,36 @@
          dest: /app
          remote_src: yes
     
-    - name: clean mvn
-      ansible.builtin.command: mvn clean package
+    - name: validate mvn
+      ansible.builtin.command: mvn validate
+    - name: comple
+      ansible.builtin.command: mvn compile
+    - name: test
+      ansible.builtin.command: mvn test
+    - name: package
+      ansible.builtin.command: mvn package
+    - name: clean
+      ansible.builtin.command: mvn clean packages
+      
 
-    - name: move
-      ansible.builtin.copy:
-         src: /app/target/shipping-1.0.jar
-         dest: shipping.jar
-         remote_src: yes
+      
+      
 
-    - name: Setup SystemD shipping Service
-      ansible.builtin.copy:
-         src: shipping.service
-         dest: /etc/systemd/system/shipping.service    
+  #  - name: move
+  #     ansible.builtin.copy:
+  #        src: /app/target/shipping-1.0.jar
+  #        dest: shipping.jar
+  #        remote_src: yes
 
-    - name: install mysql server
-      ansible.builtin.package:
-        name: mysql-server
-        state: present
+  #   - name: Setup SystemD shipping Service
+  #     ansible.builtin.copy:
+  #        src: shipping.service
+  #        dest: /etc/systemd/system/shipping.service    
+
+  #   - name: install mysql server
+  #     ansible.builtin.package:
+  #       name: mysql-server
+  #       state: present
 
   
 
