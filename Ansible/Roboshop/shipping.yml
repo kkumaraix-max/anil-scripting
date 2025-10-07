@@ -26,20 +26,36 @@
          dest: /app
          remote_src: yes
     
-  # - name: validate mvn
- #   ansible.builtin.command: mvn validate
-    - name: comple
-      ansible.builtin.command: mvn compile
-    - name: test
-      ansible.builtin.command: mvn test
-    - name: package
-      ansible.builtin.command: mvn package
-    - name: clean
-      ansible.builtin.command: mvn clean packages
-      
+    - name: Validate Maven project
+      ansible.builtin.command: mvn validate
+      args:
+        chdir: /app
+      become_user: roboshop
 
-      
-      
+    - name: Compile Maven project
+      ansible.builtin.command: mvn compile
+      args:
+        chdir: /app
+      become_user: roboshop
+
+    - name: Test Maven project
+      ansible.builtin.command: mvn test
+      args:
+        chdir: /app
+      become_user: roboshop
+
+    - name: Package Maven project
+      ansible.builtin.command: mvn package
+      args:
+        chdir: /app
+      become_user: roboshop
+
+    - name: Clean Maven project
+      ansible.builtin.command: mvn clean package
+      args:
+        chdir: /app
+      become_user: roboshop
+    
 
   #  - name: move
   #     ansible.builtin.copy:
