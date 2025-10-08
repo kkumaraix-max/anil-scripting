@@ -8,8 +8,8 @@
       ansible.builtin.command: dnf module enable redis:7 -y
     - name: installing redis
       ansible.builtin.package:
-        name: redis
-        state: present
+         name: redis
+         state: present
 
     - name: update listen address
       ansible.builtin.replace:
@@ -19,7 +19,7 @@
 
     - name: Update protected-mode from yes to no in /etc/redis/redis.conf
       ansible.builtin.lineinfile:
-         path: /etc/selinux/config
+         path: /etc/redis/redis.conf
          regexp: 'protected-mode'
          line: 'protected-mode no'
     

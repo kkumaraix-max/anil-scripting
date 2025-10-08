@@ -67,7 +67,7 @@
       ansible.builtin.shell: mongosh --host mongodb.anilkathoju.space </app/db/master-data.js
       when: catalogue_output.stdout | int == 0
 
-    - name: enable & start mongosh
+    - name: enable & start 
       ansible.builtin.service:
          name: catalogue
          enabled: true
