@@ -2,13 +2,13 @@
   hosts: shipping
   become: true
   tasks:
-    - name: install mavem
+    - name: install maven
       ansible.builtin.dnf: 
         name: "{{ item }}"
         state: present
-        loop:
-        - maven
-        - mysql
+      loop:
+      - maven
+      - mysql
     - name: install mysql python 
       ansible.builtin.pip:
         executable: pip3.9
