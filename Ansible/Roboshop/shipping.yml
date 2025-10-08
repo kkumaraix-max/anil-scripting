@@ -1,11 +1,15 @@
-- name: setup shipping
+- name: setup maven
   hosts: shipping
   become: true
-  tasks:
-    - name: installing maven
-      ansible.builtin.command: dnf install maven -y
-
-    - name: Adding application User
+  task:
+    - name: install mavem
+      ansible.builtin.dnf: 
+        name: "{{ item }}"
+        state: present
+        loop:
+        - maven
+        - mysql
+    - name: create roboshop system user
       ansible.builtin.user:
         name: roboshop
         comment: RoboShop System user
@@ -13,69 +17,42 @@
         shell: /sbin/nologin
         home: /app
     - name: create app directory
-      ansible.builtin.file:
-         state: directory
-         path: /app
-    - name: Download the application code 
+      ansible.builtin.file: 
+        state: directory
+        path: /app
+    - name: download code
       ansible.builtin.get_url:
-         url: https://roboshop-artifacts.s3.amazonaws.com/shipping-v3.zip
-         dest: /tmp/shipping.zip
+        url: https://roboshop-artifacts.s3.amazonaws.com/shipping-v3.zip
+        dest: /tmp/shipping.zip
     - name: unzip code
       ansible.builtin.unarchive:
-         src: /tmp/shipping.zip
-         dest: /app
-         remote_src: yes
-    
-    - name: Validate Maven project
-      ansible.builtin.command: mvn validate
+        src: /tmp/shipping.zip
+        dest: /app
+        remote_src: yes
+    - name: install dependencies
+      ansible.builtin.command: mvn clean package 
+      args: 
+        chdir: /app
+    - name: move jar
+      ansible.builtin.command: mv target/shipping-1.0.jar shipping.jar 
       args:
         chdir: /app
-      become_user: roboshop
-
-    - name: Compile Maven project
-      ansible.builtin.command: mvn compile
-      args:
-        chdir: /app
-      become_user: roboshop
-
-    - name: Test Maven project
-      ansible.builtin.command: mvn test
-      args:
-        chdir: /app
-      become_user: roboshop
-
-    - name: Package Maven project
-      ansible.builtin.command: mvn package
-      args:
-        chdir: /app
-      become_user: roboshop
-
-    - name: Clean Maven project
-      ansible.builtin.command: mvn clean package
-      args:
-        chdir: /app
-      become_user: roboshop
-    
-
-  #  - name: move
-  #     ansible.builtin.copy:
-  #        src: /app/target/shipping-1.0.jar
-  #        dest: shipping.jar
-  #        remote_src: yes
-
-  #   - name: Setup SystemD shipping Service
-  #     ansible.builtin.copy:
-  #        src: shipping.service
-  #        dest: /etc/systemd/system/shipping.service    
-
-  #   - name: install mysql server
-  #     ansible.builtin.package:
-  #       name: mysql-server
-  #       state: present
-
-  
+    - name: setup shipping service
+      ansible.builtin.copy:
+        src: shipping.service
+        dest: /etc/systemd/system/shipping.service
+    - name: load app,db & master schemas
+      community.mysql.mysql_db:
+        state: import
+        name: all
+        login_host: mysql.anilkathoju.space
+        login_user: root
+        login_password: RoboShop@1
+        target: "{{ item }}"
+        loop:
+        - /app/db/schema.sql
+        - /app/db/app-user.sql
+        - /app/db/master-data.sql
 
 
         
-
-  
