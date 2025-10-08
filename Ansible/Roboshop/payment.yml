@@ -1,0 +1,13 @@
+- name: setup payment
+  hosts: payment
+  become: true
+  tasks:
+    - name: install python3 gcc python3-devel
+      ansible.builtin.dnf:
+         name: "{{ item }}"
+         state: present
+      loop:
+      - python3  
+      - gcc
+      - python3-devel
+      
