@@ -56,22 +56,28 @@
         name: mongodb-mongosh
         state: present
 
-    - name: Connect to MongoDB and check for catalogue DB
-      ansible.builtin.command: >
-        mongosh mongodb.anilkathoju.space --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')"
-      register: catalogue_output
+    - name: load schema
+      ansible.builtin.shell: mongosh --host mongodb.anilkathoju.space </app/db/master-data.js
 
-    - name: Print catalogue output
-      ansible.builtin.debug:
-        msg: "Catalogue index: {{ catalogue_output.stdout }}"
+    # - name: check data is loaded
+    #   ansible.builtin.shell: mongosh --host mongodb.anilkathoju.space
 
-    - name: Load products into MongoDB if catalogue DB not found
-      ansible.builtin.shell: |
-        mongosh --host mongodb.anilkathoju.space </app/db/master-data.js
-      when: catalogue_output.stdout | int < 0
+    # - name: Connect to MongoDB and check for catalogue DB
+    #   ansible.builtin.command: >
+    #     mongosh mongodb.anilkathoju.space --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')"
+    #   register: catalogue_output
 
-    - name: data is loaded into mongodb or not Connect to MongoDB
-      ansible.builtin.command: mongosh --host mongodb.anilkathoju.space 
+    # - name: Print catalogue output
+    #   ansible.builtin.debug:
+    #     msg: "Catalogue index: {{ catalogue_output.stdout }}"
+
+    # - name: Load products into MongoDB if catalogue DB not found
+    #   ansible.builtin.shell: |
+    #     mongosh --host mongodb.anilkathoju.space </app/db/master-data.js
+    #   when: catalogue_output.stdout | int < 0
+
+    # - name: data is loaded into mongodb or not Connect to MongoDB
+    #   ansible.builtin.command: mongosh --host mongodb.anilkathoju.space 
 
     - name: daemon reload enable and start
       ansible.builtin.systemd_service:
