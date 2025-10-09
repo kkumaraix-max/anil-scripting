@@ -74,7 +74,7 @@
     - name: Load products into MongoDB if catalogue DB not found
       ansible.builtin.shell: |
         mongosh --host mongodb.anilkathoju.space </app/db/master-data.js
-#      when: catalogue_output.stdout | int < 0
+      when: catalogue_output.stdout | int < 0
 
     # - name: data is loaded into mongodb or not Connect to MongoDB
     #   ansible.builtin.command: mongosh --host mongodb.anilkathoju.space 
