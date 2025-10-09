@@ -59,8 +59,8 @@
     # - name: load schema
     #   ansible.builtin.shell: mongosh --host mongodb.anilkathoju.space </app/db/master-data.js
 
-    - name: check data is loaded
-      ansible.builtin.shell: mongosh --host mongodb.anilkathoju.space
+   # - name: check data is loaded
+   #   ansible.builtin.shell: mongosh --host mongodb.anilkathoju.space
 
     - name: Connect to MongoDB and check for catalogue DB
       ansible.builtin.command: >
