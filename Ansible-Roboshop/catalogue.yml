@@ -69,7 +69,7 @@
 
     - name: Print catalogue output
       ansible.builtin.debug:
-        msg: "Catalogue index: {{ catalogue_output.stdout }}"
+        msg: "Catalogue index: {{ catalogue_output }}"
 
     - name: Load products into MongoDB if catalogue DB not found
       ansible.builtin.shell: |
