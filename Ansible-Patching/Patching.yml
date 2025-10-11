@@ -7,7 +7,7 @@
   tasks:
     - name: initaite patching
       ansible.builtin.dnf:
-        name: kernal
+        name: *
         state: latest
 
     - name: initiate reboot
