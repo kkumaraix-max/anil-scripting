@@ -12,4 +12,7 @@
 
     - name: initiate reboot
       ansible.builtin.reboot:
-        msg: " server will be rebooting in 5 sec"
+        msg: " server will be rebooting soon"
+        reboot_timeout: 600
+        pre_reboot_delay: 0
+        post_reboot_delay: 30
