@@ -4,8 +4,15 @@
   tasks:
     - name: provides detailed information about OS
       ansible.builtin.shell: cat /etc/os-release
-      msg: "Complete details of OS"
+      
+    - name: print information
+      ansible.builtin.debug:
+        msg: "complete info about os"
+
     - name: checking kernel version with uname -r
       ansible.builtin.shell: uname -r
-      msg: "Print kernal version"
       
+    - name: print information
+      ansible.builtin.debug:
+        msg: "info about kernel"
+
