@@ -2,6 +2,7 @@
 
 - name: patch update
   hosts: local
+  connection: local
   become: true
   tasks:
     - name: initaite patching
@@ -12,4 +13,3 @@
     - name: initiate reboot
       ansible.builtin.reboot:
         msg: " server will be rebooting in 5 sec"
-             
