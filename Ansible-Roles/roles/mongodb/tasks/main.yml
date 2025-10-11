@@ -1,4 +1,3 @@
-tasks:
    - name: copy repo to /etc/yum.repos.d/mongo.repo
      ansible.builtin.copy:
        src: mongo.repo
