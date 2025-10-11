@@ -1,0 +1,15 @@
+#simple playbook to patch rhel servers
+
+- name: patch update
+  hosts: local
+  become: true
+  tasks:
+    - name: initaite patching
+      ansible.builtin.dnf:
+        name: kernal
+        state: latest
+
+    - name: initiate reboot
+      ansible.builtin.reboot:
+        msg: " server will be rebooting in 5 sec"
+             
