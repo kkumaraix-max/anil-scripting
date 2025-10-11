@@ -2,7 +2,6 @@
 
 - name: patch update
   hosts: db_servers
-  connection: local
   become: true
   tasks:
     - name: initaite patching
