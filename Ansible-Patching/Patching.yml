@@ -1,7 +1,7 @@
 #simple playbook to patch rhel servers
 
 - name: patch update
-  hosts: local
+  hosts: db_servers
   connection: local
   become: true
   tasks:
